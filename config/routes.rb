@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :disciplines
   resources :courses
   resources :institutions
+  resources :groups
+
   devise_for :users
 
   scope :api, module: :api, defaults: { format: :json } do
@@ -14,5 +16,6 @@ Rails.application.routes.draw do
     resources :disciplines, except: [:new, :edit, :destroy]
     resources :courses, except: [:new, :edit, :destroy]
     resources :institutions, except: [:new, :edit, :destroy]
+    resources :groups, except: [:new, :edit, :destroy]
   end
 end
