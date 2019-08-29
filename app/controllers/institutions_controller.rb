@@ -18,35 +18,24 @@ class InstitutionsController < ApplicationController
   def create
     @institution = Institution.new(institution_params)
 
-    respond_to do |format|
-      if @institution.save
-        format.html { redirect_to @institution, notice: 'Institution was successfully created.' }
-        format.json { render :show, status: :created, location: @institution }
-      else
-        format.html { render :new }
-        format.json { render json: @institution.errors, status: :unprocessable_entity }
-      end
+    if @institution.save
+      redirect_to @institution, notice: 'Institution was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @institution.update(institution_params)
-        format.html { redirect_to @institution, notice: 'Institution was successfully updated.' }
-        format.json { render :show, status: :ok, location: @institution }
-      else
-        format.html { render :edit }
-        format.json { render json: @institution.errors, status: :unprocessable_entity }
-      end
+    if @institution.update(institution_params)
+      redirect_to @institution, notice: 'Institution was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @institution.destroy
-    respond_to do |format|
-      format.html { redirect_to institutions_url, notice: 'Institution was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to institutions_url, notice: 'Institution was successfully destroyed.'
   end
 
   private
