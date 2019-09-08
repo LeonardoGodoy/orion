@@ -18,4 +18,10 @@ class GroupSearch < Searchlight::Search
   def search_discipline_id
     query.where(discipline_id: discipline_id)
   end
+
+  def search_user_id
+    query.joins(:subscriptions)
+         .where(subscriptions: { user_id: user_id })
+         .distinct
+  end
 end
