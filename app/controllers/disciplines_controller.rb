@@ -2,7 +2,7 @@ class DisciplinesController < ApplicationController
   before_action :set_discipline, only: [:show, :edit, :update, :destroy]
 
   def index
-    @disciplines = Discipline.all
+    @disciplines = paginate(Discipline.all)
   end
 
   def show

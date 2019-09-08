@@ -53,4 +53,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'awesome_print', '1.8.0'
 gem 'devise', '4.5.0'
 gem 'jwt', '2.2.1'
+gem 'kaminari', '1.1.1'
 gem 'searchlight', '4.1.0'
