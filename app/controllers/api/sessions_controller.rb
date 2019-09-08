@@ -8,7 +8,7 @@ module Api
       if user && user.valid_password?(sign_in_params[:password])
         @current_user = user
 
-        data = user.slice(:id).merge(exp: 1.minutes.from_now.to_i)
+        data = user.slice(:id).merge(exp: 30.minutes.from_now.to_i)
         token = JWT.encode(data, Rails.application.secrets.secret_key_base)
 
         render json: { token: token }
