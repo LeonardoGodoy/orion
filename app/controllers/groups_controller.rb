@@ -2,7 +2,8 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = paginate(Group.all)
+    search = GroupSearch.new(search_params)
+    @groups = paginate(search.results)
   end
 
   def show
@@ -42,6 +43,10 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def search_params
+    params.permit(search: [:name])[:search] || {}
   end
 
   def group_params

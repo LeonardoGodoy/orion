@@ -2,7 +2,8 @@ class InstitutionsController < ApplicationController
   before_action :set_institution, only: [:show, :edit, :update, :destroy]
 
   def index
-    @institutions = paginate(Institution.all)
+    search = InstitutionSearch.new(search_params)
+    @institutions = paginate(search.results)
   end
 
   def show
@@ -42,6 +43,10 @@ class InstitutionsController < ApplicationController
 
   def set_institution
     @institution = Institution.find(params[:id])
+  end
+
+  def search_params
+    params.permit(search: [:name])[:search] || {}
   end
 
   def institution_params

@@ -2,7 +2,8 @@ class DisciplinesController < ApplicationController
   before_action :set_discipline, only: [:show, :edit, :update, :destroy]
 
   def index
-    @disciplines = paginate(Discipline.all)
+    search = DisciplineSearch.new(search_params)
+    @disciplines = paginate(search.results)
   end
 
   def show
@@ -42,6 +43,10 @@ class DisciplinesController < ApplicationController
 
   def set_discipline
     @discipline = Discipline.find(params[:id])
+  end
+
+  def search_params
+    params.permit(search: [:name])[:search] || {}
   end
 
   def discipline_params

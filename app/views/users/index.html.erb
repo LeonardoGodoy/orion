@@ -2,6 +2,15 @@
 
 <h1>Users</h1>
 
+<%= form_tag users_path, method: :GET do %>
+  <%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
+    <div class="field">
+      <%= f.label :search %>
+      <%= f.text_field :name %>
+    </div>
+  <% end %>
+<% end %>
+
 <table>
   <thead>
     <tr>
