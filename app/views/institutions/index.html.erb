@@ -2,6 +2,15 @@
 
 <h1>Institutions</h1>
 
+<%= form_tag institutions_path, method: :GET do %>
+  <%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
+    <div class="field">
+      <%= f.label :search %>
+      <%= f.text_field :name %>
+    </div>
+  <% end %>
+<% end %>
+
 <table>
   <thead>
     <tr>

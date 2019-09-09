@@ -2,7 +2,8 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
-    @courses = paginate(Course.all)
+    search = CourseSearch.new(search_params)
+    @courses = paginate(search.results)
   end
 
   def show
@@ -44,6 +45,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+  def search_params
+    params.permit(search: [:name])[:search] || {}
+  end
 
   def course_params
     params.require(:course).permit(:name)

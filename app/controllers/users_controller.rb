@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = paginate(User.all)
+    search = UserSearch.new(search_params)
+    @users = paginate(search.results)
   end
 
   def show
@@ -42,6 +43,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def search_params
+    params.permit(search: [:name])[:search] || {}
   end
 
   def user_params
