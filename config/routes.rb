@@ -2,13 +2,13 @@ Rails.application.routes.draw do
   get  'home/index'
   root 'home#index'
 
+  devise_for :users
+
   resources :disciplines
   resources :courses
   resources :institutions
   resources :groups
   resources :users
-
-  devise_for :users
 
   scope :api, module: :api, defaults: { format: :json } do
     resources :sessions, only: :create
