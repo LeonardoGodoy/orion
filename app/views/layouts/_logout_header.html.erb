@@ -1,0 +1,17 @@
+<header>
+  <nav class="transparent no-shadows">
+    <div class="nav-wrapper">
+      <a href="#" data-target="slide-out" class="sidenav-trigger">
+        <i class="large material-icons blue-text accent-2">menu</i>
+      </a>
+
+      <ul id="nav-mobile" class="right">
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete, class: 'white-text' do %>
+            <i class="large material-icons blue-text accent-2">logout</i>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
