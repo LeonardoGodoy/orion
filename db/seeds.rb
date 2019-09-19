@@ -2,14 +2,14 @@
 # rails db:drop db:create db:migrate db:seed
 
 if Rails.env.development?
-  User.create(name: 'Admin', email: 'admin@admin.com', password: '123123')
-  User.create(name: 'User', email: 'user@user.com', password: '123123')
+  Admin.create(name: 'Admin', email: 'admin@admin.com', password: '123123')
+  Student.create(name: 'User', email: 'user@user.com', password: '123123')
 
   20.times do
     name = Faker::Name.name
     email = Faker::Internet.safe_email(name: name)
 
-    User.create(name: name, email: email, password: '123123')
+    Student.create(name: name, email: email, password: '123123')
   end
 
   50.times do
