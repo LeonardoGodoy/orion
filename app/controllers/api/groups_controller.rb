@@ -1,34 +1,31 @@
 module Api
-  class GroupsController < ApplicationController
-    before_action :set_course, only: [:show, :update]
+  class GroupsController < ::ApiController
+    before_action :set_group, only: [:show, :update]
 
     def index
       @groups = GroupSearch.new(search_params).results
-      render json: @groups
+      render json: @groups, status: :ok
     end
 
     def show
+      render json: @group, status: :ok
     end
 
     def create
       @group = Group.new(group_params)
 
-      respond_to do |format|
-        if @group.save
-          format.json { render :show, status: :created, location: @group }
-        else
-          format.json { render json: @group.errors, status: :unprocessable_entity }
-        end
+      if @group.save
+        render json: @group, status: :created
+      else
+        render json: @group.errors, status: :unprocessable_entity
       end
     end
 
     def update
-      respond_to do |format|
-        if @group.update(group_params)
-          format.json { render :show, status: :ok, location: @group }
-        else
-          format.json { render json: @group.errors, status: :unprocessable_entity }
-        end
+      if @group.update(group_params)
+        render json: @group, status: :ok
+      else
+        render json: @group.errors, status: :unprocessable_entity
       end
     end
 
@@ -43,7 +40,7 @@ module Api
     end
 
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, :institution_id, :course_id, :discipline_id)
     end
   end
 end

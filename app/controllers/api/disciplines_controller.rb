@@ -1,34 +1,31 @@
 module Api
-  class DisciplinesController < ApplicationController
+  class DisciplinesController < ::ApiController
     before_action :set_discipline, only: [:show, :update]
 
     def index
       @disciplines = DisciplineSearch.new(search_params).results
-      render json: @disciplines
+      render json: @disciplines, status: :ok
     end
 
     def show
+      render json: @discipline, status: :ok
     end
 
     def create
       @discipline = Discipline.new(discipline_params)
 
-      respond_to do |format|
-        if @discipline.save
-          format.json { render :show, status: :created, location: @discipline }
-        else
-          format.json { render json: @discipline.errors, status: :unprocessable_entity }
-        end
+      if @discipline.save
+        render json: @discipline, status: :created
+      else
+        render json: @discipline.errors, status: :unprocessable_entity
       end
     end
 
     def update
-      respond_to do |format|
-        if @discipline.update(discipline_params)
-          format.json { render :show, status: :ok, location: @discipline }
-        else
-          format.json { render json: @discipline.errors, status: :unprocessable_entity }
-        end
+      if @discipline.update(discipline_params)
+        render json: @discipline, status: :ok
+      else
+        render json: @discipline.errors, status: :unprocessable_entity
       end
     end
 
