@@ -16,6 +16,7 @@ if Rails.env.development?
     institution = Institution.create(name: Faker::Educator.university)
     course = Course.create(name: Faker::Educator.course_name)
     discipline = Discipline.create(name: Faker::Educator.subject)
-    group = Group.create(institution: institution, course: course, discipline: discipline)
+    name = Faker::Team.name
+    group = Group.create(institution: institution, course: course, discipline: discipline, name: name)
   end
 end
