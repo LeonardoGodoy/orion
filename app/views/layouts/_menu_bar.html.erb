@@ -1,10 +1,28 @@
-<ul>
-  <li> <%= link_to 'Home', home_index_path %> </li>
-  <li> <%= link_to 'Institutions', institutions_path %> </li>
-  <li> <%= link_to 'Courses', courses_path %> </li>
-  <li> <%= link_to 'Disciplines', disciplines_path %> </li>
-  <li> <%= link_to 'Groups', groups_path %> </li>
-  <li> <%= link_to 'Users', users_path %> </li>
-
-  <li> <%= link_to 'Log out', destroy_user_session_path, method: :delete %> </li>
+<ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 white-text">
+  <li>
+    <div class="user-view center">
+      <h2>LOGO</h2>
+    </div>
+  </li>
+  <li class="nav-item z-depth-1 right <%= active_tab_class('home') %>">
+    <%= link_to 'Home', home_index_path, class: 'white-text' %>
+  </li>
+  <li class="nav-item z-depth-1 right <%= active_tab_class('users') %>">
+    <%= link_to 'Admins', users_path, class: 'white-text' %>
+  </li>
+  <li class="nav-item z-depth-1 right <%= active_tab_class('institutions') %>">
+    <%= link_to 'Institutions', institutions_path, class: 'white-text' %>
+  </li>
+  <li class="nav-item z-depth-1 right <%= active_tab_class('courses') %>">
+    <%= link_to 'Courses', courses_path, class: 'white-text' %>
+  </li>
+  <li class="nav-item z-depth-1 right <%= active_tab_class('disciplines') %>">
+    <%= link_to 'Disciplines', disciplines_path, class: 'white-text' %>
+  </li>
+  <li class="nav-item z-depth-1 right <%= active_tab_class('groups') %>">
+    <%= link_to 'Groups', groups_path, class: 'white-text' %>
+  </li>
+  <li class="nav-item z-depth-1 right <%= active_tab_class('users') %>">
+    <%= link_to 'Users', users_path, class: 'white-text' %>
+  </li>
 </ul>
