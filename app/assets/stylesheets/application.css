@@ -12,3 +12,7 @@
  *
  *= require_self
  */
+
+.blue.theme {
+    background-color: rgb(114, 138, 255) !important;
+}
