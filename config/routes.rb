@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   resources :courses
   resources :institutions
   resources :groups
-  resources :users
+
+  resources :students
+  resources :admins
 
   scope :api, module: :api, defaults: { format: :json } do
     resources :sessions, only: :create
-    resources :users, only: :create
+    resources :students, only: :create
 
     resources :disciplines, except: [:new, :edit, :destroy]
     resources :courses, except: [:new, :edit, :destroy]
