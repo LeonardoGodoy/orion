@@ -1,6 +1,7 @@
 class ApiController < ApplicationController
   protect_from_forgery with: :null_session
 
+  skip_before_action :authenticate_user!
   before_action :authorize_request
 
   def authorize_request
