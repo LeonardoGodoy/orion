@@ -30,16 +30,16 @@
         <td><%= group.course.try(:name) %></td>
         <td><%= group.discipline.try(:name) %></td>
         <td><%= group.name %></td>
-        <td><%= group.subscriptions.count %></td>
+        <td><i class="material-icons tiny">person</i> <%= group.subscriptions.size %> </span></td>
         <td><%= link_to 'Show', group %></td>
         <td>
           <%= link_to edit_group_path(group) do %>
-            <i class="material-icons blue-text accent-2">edit</i>
+            <i class="material-icons">edit</i>
           <% end %>
         </td>
         <td>
           <%= link_to group, method: :delete, data: { confirm: 'Are you sure?' } do %>
-            <i class="material-icons blue-text accent-2">delete</i>
+            <i class="material-icons">delete</i>
           <% end %>
         </td>
       </tr>

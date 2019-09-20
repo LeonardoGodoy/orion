@@ -15,6 +15,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Subsctiptions</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
     <% @institutions.each do |institution| %>
       <tr>
         <td><%= institution.name %></td>
+        <td><i class="material-icons tiny">person</i> <%= institution.subscriptions.size %> </span></td>
         <td><%= link_to 'Show', institution %></td>
         <td><%= link_to 'Edit', edit_institution_path(institution) %></td>
         <td><%= link_to 'Destroy', institution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
