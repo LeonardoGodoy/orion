@@ -36,7 +36,7 @@ module Api
     end
 
     def search_params
-      params.permit(:name, :institution_id, :course_id, :discipline_id)
+      params.permit(:name, :institution_id, :course_id, :discipline_id, :user_id)
     end
 
     def group_params
