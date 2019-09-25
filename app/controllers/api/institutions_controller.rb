@@ -4,28 +4,28 @@ module Api
 
     def index
       @institutions = InstitutionSearch.new(search_params).results
-      render json: @institutions, status: :ok
+      render_success_array(@institutions)
     end
 
     def show
-      render json: @institution, status: :ok
+      render_success(@institution)
     end
 
     def create
       @institution = Institution.new(institution_params)
 
       if @institution.save
-        render json: @institution, status: :created
+        render_created(@institution)
       else
-        render json: @institution.errors, status: :unprocessable_entity
+        render_errors(@institution.errors)
       end
     end
 
     def update
       if @institution.update(institution_params)
-        render json: @institution, status: :ok
+        render_success(@institution)
       else
-        render json: @institution.errors, status: :unprocessable_entity
+        render_errors(@institution.errors)
       end
     end
 

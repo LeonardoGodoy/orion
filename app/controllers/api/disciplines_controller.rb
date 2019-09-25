@@ -4,28 +4,28 @@ module Api
 
     def index
       @disciplines = DisciplineSearch.new(search_params).results
-      render json: @disciplines, status: :ok
+      render_success_array(@disciplines)
     end
 
     def show
-      render json: @discipline, status: :ok
+      render_success(@discipline)
     end
 
     def create
       @discipline = Discipline.new(discipline_params)
 
       if @discipline.save
-        render json: @discipline, status: :created
+        render_created(@discipline)
       else
-        render json: @discipline.errors, status: :unprocessable_entity
+        render_errors(@discipline.errors)
       end
     end
 
     def update
       if @discipline.update(discipline_params)
-        render json: @discipline, status: :ok
+        render_success(@discipline)
       else
-        render json: @discipline.errors, status: :unprocessable_entity
+        render_errors(@discipline.errors)
       end
     end
 

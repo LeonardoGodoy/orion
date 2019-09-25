@@ -4,28 +4,28 @@ module Api
 
     def index
       @courses = CourseSearch.new(search_params).results
-      render json: @courses
+      render_success_array(@courses)
     end
 
     def show
-      render json: @course, status: :ok
+      render_success(@course)
     end
 
     def create
       @course = Course.new(course_params)
 
       if @course.save
-        render json: @course, status: :created
+        render_created(@course)
       else
-        render json: @course.errors, status: :unprocessable_entity
+        render_errors(@course.errors)
       end
     end
 
     def update
       if @course.update(course_params)
-        render json: @course, status: :ok
+        render_success(@course)
       else
-        render json: @course.errors, status: :unprocessable_entity
+        render_errors(@course.errors)
       end
     end
 
