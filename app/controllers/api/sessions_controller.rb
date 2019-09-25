@@ -5,15 +5,15 @@ module Api
     def create
       user = User.find_by_email(sign_in_params[:email])
 
-      if user && user.valid_password?(sign_in_params[:password])
+      if user.present? && user.valid_password?(sign_in_params[:password])
         @current_user = user
 
         data = user.slice(:id).merge(exp: 30.minutes.from_now.to_i)
         token = JWT.encode(data, Rails.application.secrets.secret_key_base)
 
-        render json: { token: token }
+        render_created(token: token, student: user.as_json)
       else
-        render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
+        render_errors('email or password' => ['is invalid'])
       end
     end
 

@@ -5,13 +5,13 @@ module Api
     def create
       student = Student.new(user_params)
 
-      if student.valid? && student.save
+      if student.save
         data = student.slice(:id).merge(exp: 30.minutes.from_now.to_i)
         token = JWT.encode(data, Rails.application.secrets.secret_key_base)
 
-        render json: { token: token }
+        render_created(token: token, student: student.as_json)
       else
-        render json: { errors: student.errors.messages }, status: :unprocessable_entity
+        render_errors(student.errors)
       end
     end
 
