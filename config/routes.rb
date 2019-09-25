@@ -20,6 +20,6 @@ Rails.application.routes.draw do
     resources :courses, except: [:new, :edit, :destroy]
     resources :institutions, except: [:new, :edit, :destroy]
     resources :groups, except: [:new, :edit, :destroy]
-    resources :subscriptions, only: [:create, :update, :destroy]
+    resources :subscriptions, only: [:index, :create, :update, :destroy]
   end
 end
