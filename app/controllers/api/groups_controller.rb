@@ -4,28 +4,28 @@ module Api
 
     def index
       @groups = GroupSearch.new(search_params).results
-      render json: @groups, status: :ok
+      render_success_array(@groups, GroupSerializer)
     end
 
     def show
-      render json: @group, status: :ok
+      render_success(@group, GroupSerializer)
     end
 
     def create
       @group = Group.new(group_params)
 
       if @group.save
-        render json: @group, status: :created
+        render_created(@group, GroupSerializer)
       else
-        render json: @group.errors, status: :unprocessable_entity
+        render_errors(@group.errors)
       end
     end
 
     def update
       if @group.update(group_params)
-        render json: @group, status: :ok
+        render_success(@group, GroupSerializer)
       else
-        render json: @group.errors, status: :unprocessable_entity
+        render_errors(@group.errors)
       end
     end
 
