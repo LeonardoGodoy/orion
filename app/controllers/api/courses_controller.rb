@@ -4,18 +4,18 @@ module Api
 
     def index
       @courses = CourseSearch.new(search_params).results
-      render_success_array(@courses)
+      render_success_array(@courses, CourseSerializer, metadata: true)
     end
 
     def show
-      render_success(@course)
+      render_success(@course, CourseSerializer, metadata: true)
     end
 
     def create
       @course = Course.new(course_params)
 
       if @course.save
-        render_created(@course)
+        render_created(@course, CourseSerializer)
       else
         render_errors(@course.errors)
       end
@@ -23,7 +23,7 @@ module Api
 
     def update
       if @course.update(course_params)
-        render_success(@course)
+        render_success(@course, CourseSerializer)
       else
         render_errors(@course.errors)
       end

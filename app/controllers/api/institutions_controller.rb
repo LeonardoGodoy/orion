@@ -4,18 +4,18 @@ module Api
 
     def index
       @institutions = InstitutionSearch.new(search_params).results
-      render_success_array(@institutions)
+      render_success_array(@institutions, InstitutionSerializer, metadata: true)
     end
 
     def show
-      render_success(@institution)
+      render_success(@institution, InstitutionSerializer, metadata: true)
     end
 
     def create
       @institution = Institution.new(institution_params)
 
       if @institution.save
-        render_created(@institution)
+        render_created(@institution, InstitutionSerializer)
       else
         render_errors(@institution.errors)
       end
@@ -23,7 +23,7 @@ module Api
 
     def update
       if @institution.update(institution_params)
-        render_success(@institution)
+        render_success(@institution, InstitutionSerializer)
       else
         render_errors(@institution.errors)
       end

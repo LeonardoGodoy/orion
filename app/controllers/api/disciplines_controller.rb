@@ -4,18 +4,18 @@ module Api
 
     def index
       @disciplines = DisciplineSearch.new(search_params).results
-      render_success_array(@disciplines)
+      render_success_array(@disciplines, DisciplineSerializer, metadata: true)
     end
 
     def show
-      render_success(@discipline)
+      render_success(@discipline, DisciplineSerializer, metadata: true)
     end
 
     def create
       @discipline = Discipline.new(discipline_params)
 
       if @discipline.save
-        render_created(@discipline)
+        render_created(@discipline, DisciplineSerializer)
       else
         render_errors(@discipline.errors)
       end
@@ -23,7 +23,7 @@ module Api
 
     def update
       if @discipline.update(discipline_params)
-        render_success(@discipline)
+        render_success(@discipline, DisciplineSerializer)
       else
         render_errors(@discipline.errors)
       end

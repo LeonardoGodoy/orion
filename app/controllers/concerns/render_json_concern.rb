@@ -4,12 +4,12 @@ module RenderJsonConcern
   included do
     respond_to :json
 
-    def render_created(object, serializer=false)
-      render json: object, serializer: serializer, status: :created
+    def render_created(object, serializer=false, options={})
+      render json: object, serializer: serializer, **options, status: :created
     end
 
-    def render_success(object, serializer=false)
-      render json: object, serializer: serializer, status: :ok
+    def render_success(object, serializer=false, options={})
+      render json: object, serializer: serializer, **options, status: :ok
     end
 
     def render_success_array(object, serializer=nil, options={})
