@@ -1,24 +1,66 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Instalação
+- Ruby 2.6.1
 
-Things you may want to cover:
+Clone o projeto em seu workspace favorito.
 
-* Ruby version
+> git clone https://github.com/LeonardoGodoy/orion.git
 
-* System dependencies
+Instale a gem bundler para gerenciar os pacotes.
+> gem install bundler
 
-* Configuration
+Dentro da pasta do projeto, Instale as dependências.
+> bundle install
 
-* Database creation
+Inicialize o banco de dados com dados básicos de teste em desenvolvimento.
 
-* Database initialization
+> rails db:create db:migrate db:seed
 
-* How to run the test suite
+Inicialize o servidor.
+> rails server 
 
-* Services (job queues, cache servers, search engines, etc.)
+Acesse o servidor em seu navegador preferido pela url.
+> http://localhost:3000
 
-* Deployment instructions
 
-* ...
+# Funcionalidades
+
+## Membro
+É o usuário que usufrui das funcionalidades basicas de um grupo.
+
+### Funcionalidades
+- Pesquisar grupos
+- Criar grupos
+- ...
+
+### Variante: Grupo público
+- Enviar convite
+
+### Variante: Manager
+É o usuário com poder administrativo no contexto de um grupo específico.
+
+- Ao criar um grupo o usuário automáticamente é um manager
+- Ao entrar em um grupo o usuário será automatiacamente um membro não manager
+
+#### Funcionalidades adicionais
+- Enviar convite
+- criar e remover o titulo de manager de outros usuários do grupo
+- Adiciona e Remove papel de manager de outros usuários
+- Remove usuários do grupo
+- Bane usuários do grupo
+
+## Admin
+É o usuário responsável pela administração do sistema como um todo. Capaz de banir definitivamente usuários e remover registros que vão contra as políticas de bom uso da plataforma.
+
+- Gerenciar administradores
+- Bloquear usuários
+- Remover grupos
+- Remover instituições
+- Remover disciplinas
+- Remover cursos
+
+# Desenvolvimento
+
+Para facilitar a utilização e testes da API consumida pelo aplicativo, utilizamos a documentação da ferramenta postman.
+
+> https://documenter.getpostman.com/view/3349066/
