@@ -1,7 +1,7 @@
-class UnsubscribeForm
+class ManagerForm
   include FormConcern
 
-  attr_accessor :user_id, :subscription_id
+  attr_accessor :subscription_id, :user_id, :manager
 
   validates :subscription, :user, presence: true
   validate :validate_user
@@ -9,7 +9,6 @@ class UnsubscribeForm
   def validate_user
     return if user.blank?
     return if subscription.blank?
-    return if self_update?
     return if manager_update?
 
     errors.add(:user, 'Usuário não permitido')
@@ -33,11 +32,7 @@ class UnsubscribeForm
     subscription.group.manager?(user)
   end
 
-  def self_update?
-    subscription.user.eql?(user)
-  end
-
   def subscription_params
-    { active: false }
+    { manager: manager }
   end
 end
