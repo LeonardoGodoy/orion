@@ -20,7 +20,7 @@ class SubscribeForm
   end
 
   def subscription
-    @subscription ||= Subscription.find_or_initialize_by(subscription_params)
+    @subscription ||= Subscription.unscope(:where).find_or_initialize_by(subscription_params)
   end
 
   private

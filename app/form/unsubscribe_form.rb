@@ -20,7 +20,7 @@ class UnsubscribeForm
   end
 
   def subscription
-    @subscription ||= Subscription.find_by(id: subscription_id)
+    @subscription ||= Subscription.unscope(:where).find_by(id: subscription_id)
   end
 
   def user
