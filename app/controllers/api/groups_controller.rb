@@ -12,12 +12,13 @@ module Api
     end
 
     def create
-      @group = Group.new(group_params)
+      form = CreateGroupForm.new(group_params)
+      form.user = current_user
 
-      if @group.save
-        render_created(@group, GroupSerializer)
+      if form.perform
+        render_created(form.group, GroupSerializer)
       else
-        render_errors(@group.errors)
+        render_errors(form.errors)
       end
     end
 
