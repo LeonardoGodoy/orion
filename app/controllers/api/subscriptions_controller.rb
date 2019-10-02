@@ -1,6 +1,6 @@
 module Api
   class SubscriptionsController < ::ApiController
-    before_action :set_course, only: [:update]
+    before_action :set_subscription, only: [:update]
 
     def index
       @subscriptions = SubscriptionSearch.new(search_params).results
@@ -8,12 +8,13 @@ module Api
     end
 
     def create
-      @subscription = Subscription.new(subscription_params)
+      form = SubscribeForm.new(subscription_params)
+      form.user_id = current_user.id
 
-      if @subscription.save
-        render_created(@subscription, SubscriptionSerializer)
+      if form.perform
+        render_created(form.subscription, SubscriptionSerializer)
       else
-        render_errors(@subscription.errors)
+        render_errors(form.errors)
       end
     end
 
@@ -26,9 +27,14 @@ module Api
     end
 
     def destroy
-      # change to inactive
-      @subscription.destroy
-      render json: {}, status: :ok
+      form = UnsubscribeForm.new(subscription_id: params[:id])
+      form.user_id = current_user.id
+
+      if form.perform
+        render_success(form.subscription, SubscriptionSerializer)
+      else
+        render_errors(form.errors)
+      end
     end
 
     private
@@ -42,9 +48,7 @@ module Api
     end
 
     def subscription_params
-      params.require(:subscription).permit(:group_id).tap do |hash|
-        hash[:user_id] = current_user.id
-      end
+      params.require(:subscription).permit(:group_id)
     end
   end
 end

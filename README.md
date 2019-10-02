@@ -31,7 +31,8 @@ Acesse o servidor em seu navegador preferido pela url.
 ### Funcionalidades
 - Pesquisar grupos
 - Criar grupos
-- ...
+- Se desinscrever em grupos
+- Se inscrever em grupos
 
 ### Variante: Grupo público
 - Enviar convite
@@ -44,10 +45,9 @@ Acesse o servidor em seu navegador preferido pela url.
 
 #### Funcionalidades adicionais
 - Enviar convite
-- criar e remover o titulo de manager de outros usuários do grupo
-- Adiciona e Remove papel de manager de outros usuários
-- Remove usuários do grupo
-- Bane usuários do grupo
+- Adicionar e Remove papel de manager de outros usuários
+- Remover usuários do grupo
+- Banir usuários do grupo
 
 ## Admin
 É o usuário responsável pela administração do sistema como um todo. Capaz de banir definitivamente usuários e remover registros que vão contra as políticas de bom uso da plataforma.

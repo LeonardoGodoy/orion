@@ -5,4 +5,10 @@ class Group < ApplicationRecord
 
   has_many :subscriptions
   has_many :users, through: :subscriptions
+
+  validates :name, presence: true
+
+  def manager?(user)
+    subscriptions.managers.exists?(user_id: user.id)
+  end
 end
