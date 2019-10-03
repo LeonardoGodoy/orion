@@ -21,5 +21,6 @@ Rails.application.routes.draw do
     resources :institutions, except: [:new, :edit, :destroy]
     resources :groups, except: [:new, :edit, :destroy]
     resources :subscriptions, only: [:index, :create, :update, :destroy]
+    resources :managers, only: [:create, :destroy]
   end
 end
