@@ -1,6 +1,6 @@
 class EventSearch < Searchlight::Search
   def base_query
-    Event.all
+    Event.all.order(:date)
   end
 
   def search_title
@@ -12,6 +12,6 @@ class EventSearch < Searchlight::Search
   end
 
   def search_user_id
-    query.where(user_id: user_id)
+    query.joins(group: :subscriptions).where('subscriptions.user_id' => user_id)
   end
 end
