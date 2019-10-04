@@ -11,7 +11,7 @@ if Rails.env.development?
     Student.create(name: name, email: email, password: '123123')
   end
 
-  20.times do
+  def generate_group(user)
     institution = Institution.create(name: Faker::Educator.university)
     course      = Course.create(name: Faker::Educator.course_name)
     discipline  = Discipline.create(name: Faker::Educator.subject)
@@ -24,13 +24,27 @@ if Rails.env.development?
     }
 
     form = CreateGroupForm.new(group_params)
-    form.user = Student.all.sample
+    form.user = user
     form.save
   end
 
+  40.times { generate_group(Student.all.sample) }
+  4.times { generate_group(student) }
+  6.times { SubscribeForm.new(group_id: Group.all.sample, user_id: student).perform }
+
   student.groups.each do |group|
-    10.times do
-      Subscription.create(user: Student.all.sample, group: group, manager: false)
+    rand(4..9).times { SubscribeForm.new(group_id: group, user_id: Student.all.sample).perform }
+
+    rand(1..5).times do |i|
+      data = {
+        title: "Title #{i}",
+        content: "Content #{i}",
+        date: Time.now.next_day(rand(0..15)),
+        user_id: group.users.pluck(:id).sample,
+        group_id: group.id
+      }
+
+      CreateEventForm.new(data).perform
     end
   end
 end
