@@ -4,6 +4,7 @@ class Group < ApplicationRecord
   belongs_to :discipline, optional: true
 
   has_many :subscriptions
+  has_many :events
   has_many :users, through: :subscriptions
 
   validates :name, presence: true
