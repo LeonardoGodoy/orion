@@ -4,14 +4,14 @@ class CreateGroupForm
   attr_accessor :institution_id, :course_id, :discipline_id,
                 :name, :private, :user
 
+  validates :user, presence: true
+
   def perform
-    if valid?
-      save
-    else
-      capture_errors(group)
-      capture_errors(subscription)
-      false
-    end
+    return save if valid?
+
+    capture_errors(group)
+    capture_errors(subscription)
+    false
   end
 
   def save
