@@ -21,7 +21,7 @@ class GroupSearch < Searchlight::Search
 
   def search_user_id
     query.joins(:subscriptions)
-         .where(subscriptions: { user_id: user_id })
+         .where(subscriptions: { user_id: user_id, active: true })
          .distinct
   end
 end
