@@ -23,10 +23,14 @@ module Api
     end
 
     def update
-      if @group.update(group_params)
-        render_success(@group, GroupSerializer)
+      form = UpdateGroupForm.new(update_group_params)
+      form.user_id  = current_user.id
+      form.group_id = params[:id]
+
+      if form.perform
+        render_success(form.group, GroupSerializer)
       else
-        render_errors(@group.errors)
+        render_errors(form.errors)
       end
     end
 
@@ -42,6 +46,10 @@ module Api
 
     def group_params
       params.require(:group).permit(:name, :institution_id, :course_id, :discipline_id)
+    end
+
+    def update_group_params
+      params.require(:group).permit(:name)
     end
   end
 end
