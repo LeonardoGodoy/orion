@@ -20,10 +20,14 @@ class SubscribeForm
   end
 
   def subscription
-    @subscription ||= Subscription.unscope(:where).find_or_initialize_by(subscription_params)
+    @subscription ||= Subscription.find_or_initialize_by(subscription_params)
   end
 
   private
+
+  def subscription_params
+    { user_id: user_id, group_id: group_id }
+  end
 
   def update_subscription
     return banned_subscription if subscription.banned?
@@ -32,11 +36,7 @@ class SubscribeForm
   end
 
   def banned_subscription
-    errors.add(:user, 'Usuário banido')
+    errors.add(:user, 'banned')
     false
-  end
-
-  def subscription_params
-    { user_id: user_id, group_id: group_id }
   end
 end
