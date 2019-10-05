@@ -3,16 +3,16 @@ class DeleteEventForm
 
   attr_accessor :title, :content, :date, :user_id, :event_id
 
-  validates :user, :event, :subscription, presence: true
+  validates :user, :event, presence: true
 
-  validate :validates_user
+  validate :allow_only_self
 
-  def validates_user
+  def allow_only_self
     return if user.blank?
-    return if subscription.blank?
-    return if self_update?
+    return if event.blank?
+    return if event.user.eql?(user)
 
-    errors.add(:user, 'Usuário não permitido')
+    errors.add(:user, 'not allowed')
   end
 
   def perform
@@ -27,13 +27,5 @@ class DeleteEventForm
 
   def event
     @event ||= Event.find_by(id: event_id)
-  end
-
-  def subscription
-    @subscription ||= Subscription.find_by(group_id: event.try(:group_id), user_id: user_id)
-  end
-
-  def self_update?
-    subscription.user.eql?(user)
   end
 end

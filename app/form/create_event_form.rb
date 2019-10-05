@@ -1,9 +1,12 @@
 class CreateEventForm
   include FormConcern
+  include ValidateStudentForm
 
   attr_accessor :title, :content, :date, :user_id, :group_id
 
-  validates :user, :group, :subscription, presence: true
+  validates :user, :group, presence: true
+
+  validate :allow_only_subscribed
 
   def perform
     return false if invalid?
@@ -24,10 +27,14 @@ class CreateEventForm
   end
 
   def subscription
-    @subscription ||= Subscription.find_by(group_id: group_id, user_id: user_id)
+    @subscription ||= Subscription.active.find_by(subscription_params)
   end
 
   private
+
+  def subscription_params
+    { group_id: group_id, user_id: user_id }
+  end
 
   def event_params
     {
