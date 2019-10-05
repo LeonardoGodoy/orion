@@ -1,18 +1,11 @@
 class ManagerForm
   include FormConcern
+  include ValidateStudentForm
 
-  attr_accessor :subscription_id, :user_id, :manager
+  attr_accessor :subscription_id, :user_id
 
-  validates :subscription, :user, presence: true
-  validate :validate_user
-
-  def validate_user
-    return if user.blank?
-    return if subscription.blank?
-    return if manager_update?
-
-    errors.add(:user, 'Usuário não permitido')
-  end
+  validates :user, presence: true
+  validate :allow_only_manager
 
   def perform
     return false if invalid?
@@ -21,18 +14,12 @@ class ManagerForm
   end
 
   def subscription
-    @subscription ||= Subscription.unscope(:where).find_by(id: subscription_id)
+    @subscription ||= Subscription.active.find_by(id: subscription_id)
   end
 
   def user
     @user ||= User.find_by(id: user_id)
   end
 
-  def manager_update?
-    subscription.group.manager?(user)
-  end
-
-  def subscription_params
-    { manager: manager }
-  end
+  def subscription_params; end
 end
