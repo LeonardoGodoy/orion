@@ -1,9 +1,8 @@
 module Api
   class ManagersController < ::ApiController
     def create
-      form = ManagerForm.new(subscription_params)
+      form = CreateManagerForm.new(subscription_params)
       form.user_id = current_user.id
-      form.manager = true
 
       if form.perform
         render_created(form.subscription, SubscriptionSerializer)
@@ -13,9 +12,8 @@ module Api
     end
 
     def destroy
-      form = ManagerForm.new(subscription_id: params[:id])
+      form = DeleteManagerForm.new(subscription_id: params[:id])
       form.user_id = current_user.id
-      form.manager = false
 
       if form.perform
         render_success(form.subscription, SubscriptionSerializer)
