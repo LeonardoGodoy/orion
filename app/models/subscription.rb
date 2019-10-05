@@ -1,11 +1,9 @@
 class Subscription < ApplicationRecord
-  default_scope { active }
-
   belongs_to :user
   belongs_to :group
 
-  scope :active, -> { where(active: true) }
-  scope :managers, -> { where(manager: true) }
+  scope :active, -> { where(active: true, banned: false) }
+  scope :managers, -> { active.where(manager: true) }
 
   validates :group, uniqueness: { scope: :user }
 end
