@@ -33,15 +33,15 @@ if Rails.env.development?
   6.times { SubscribeForm.new(group_id: Group.all.sample.id, user_id: student.id).perform }
 
   student.groups.each do |group|
+    rand(2..5).times { |i| Performance.create(user: student, discipline: group.discipline, description: "Nota #{i + 1}", value: rand(33..100), max_value: 100) }
     rand(4..9).times { SubscribeForm.new(group_id: group, user_id: Student.all.sample).perform }
     rand(8..15).times { SubscribeForm.new(group_id: group.id, user_id: Student.where.not(id: student.id).sample.id).perform }
 
     rand(1..5).times do |i|
       data = {
-        title: "Title #{i}",
-        content: "Content #{i}",
+        title: "Título #{i + 1}",
+        content: "Conteúdo #{i + 1}",
         date: Time.now.next_day(rand(0..15)),
-        user_id: group.users.pluck(:id).sample,
         user_id: group.users.sample.id,
         group_id: group.id
       }
