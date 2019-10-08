@@ -1,7 +1,7 @@
 class DeleteEventForm
   include FormConcern
 
-  attr_accessor :title, :content, :date, :user_id, :event_id
+  attr_accessor :user_id, :event_id
 
   validates :user, :event, presence: true
 
