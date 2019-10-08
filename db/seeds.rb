@@ -48,5 +48,16 @@ if Rails.env.development?
 
       CreateEventForm.new(data).perform
     end
+
+    rand(2..12).times do |i|
+      data = {
+        title: "Post #{i + 1}",
+        content: "Conteúdo #{i + 1}",
+        user_id: group.users.sample.id,
+        group_id: group.id
+      }
+
+      CreatePostForm.new(data).perform
+    end
   end
 end
