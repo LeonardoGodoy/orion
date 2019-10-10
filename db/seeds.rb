@@ -18,9 +18,10 @@ if Rails.env.development?
 
     group_params = {
       institution_id: institution.id,
-      course_id:      course.id,
-      discipline_id:  discipline.id,
-      name:           Faker::Team.name
+      course_id: course.id,
+      discipline_id: discipline.id,
+      name: Faker::Team.name,
+      description: '...'
     }
 
     form = CreateGroupForm.new(group_params)
