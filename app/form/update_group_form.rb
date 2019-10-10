@@ -2,7 +2,7 @@ class UpdateGroupForm
   include FormConcern
   include ValidateStudentForm
 
-  attr_accessor :name, :user_id, :group_id
+  attr_accessor :name, :description, :user_id, :group_id
 
   validates :user, :group, presence: true
 
@@ -33,6 +33,9 @@ class UpdateGroupForm
   end
 
   def group_params
-    { name: name }
+    {
+      name: name.try(:strip),
+      description: description.try(:strip)
+    }
   end
 end

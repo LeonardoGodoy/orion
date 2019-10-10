@@ -2,7 +2,7 @@ class CreateGroupForm
   include FormConcern
 
   attr_accessor :institution_id, :course_id, :discipline_id,
-                :name, :private, :user
+                :name, :description, :private, :user
 
   validates :user, presence: true
 
@@ -37,10 +37,11 @@ class CreateGroupForm
   def group_params
     {
       institution_id: institution_id,
-      course_id:      course_id,
-      discipline_id:  discipline_id,
-      #private:       private,
-      name:           name.try(:strip)
+      course_id: course_id,
+      discipline_id: discipline_id,
+      # private:       private,
+      name: name.try(:strip),
+      description: description.try(:strip)
     }
   end
 end
