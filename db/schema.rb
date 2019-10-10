@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_10_08_155529) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 2019_10_08_155529) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "user_id"
+    t.bigint "group_id"
+    t.bigint "user_id"
     t.string "title"
     t.string "content"
     t.datetime "date"
@@ -37,9 +40,9 @@ ActiveRecord::Schema.define(version: 2019_10_08_155529) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.integer "institution_id"
-    t.integer "course_id"
-    t.integer "discipline_id"
+    t.bigint "institution_id"
+    t.bigint "course_id"
+    t.bigint "discipline_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,8 +58,8 @@ ActiveRecord::Schema.define(version: 2019_10_08_155529) do
   end
 
   create_table "performances", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "discipline_id"
+    t.bigint "user_id"
+    t.bigint "discipline_id"
     t.string "description"
     t.decimal "value", default: "0.0"
     t.decimal "max_value", default: "100.0"
@@ -67,8 +70,8 @@ ActiveRecord::Schema.define(version: 2019_10_08_155529) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
+    t.bigint "user_id"
+    t.bigint "group_id"
     t.string "title"
     t.text "content"
     t.datetime "created_at", null: false
@@ -78,8 +81,8 @@ ActiveRecord::Schema.define(version: 2019_10_08_155529) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
+    t.bigint "user_id"
+    t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "manager", default: false
@@ -108,4 +111,12 @@ ActiveRecord::Schema.define(version: 2019_10_08_155529) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "events", "groups"
+  add_foreign_key "events", "users"
+  add_foreign_key "performances", "disciplines"
+  add_foreign_key "performances", "users"
+  add_foreign_key "posts", "groups"
+  add_foreign_key "posts", "users"
+  add_foreign_key "subscriptions", "groups"
+  add_foreign_key "subscriptions", "users"
 end
