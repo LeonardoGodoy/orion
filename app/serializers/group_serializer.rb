@@ -1,5 +1,5 @@
 class GroupSerializer < ActiveModel::Serializer
-  attributes :id, :name, :created_at, :updated_at, :metadata
+  attributes :id, :name, :description, :created_at, :updated_at, :metadata
 
   belongs_to :institution
   belongs_to :course
