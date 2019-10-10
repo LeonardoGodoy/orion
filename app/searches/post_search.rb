@@ -12,6 +12,6 @@ class PostSearch < Searchlight::Search
   end
 
   def search_user_id
-    query.joins(user_id: user_id)
+    query.where(user_id: user_id)
   end
 end
