@@ -1,6 +1,6 @@
 class PostSearch < Searchlight::Search
   def base_query
-    Post.all.order(:date)
+    Post.all
   end
 
   def search_title
