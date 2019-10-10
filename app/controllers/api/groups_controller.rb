@@ -34,6 +34,12 @@ module Api
       end
     end
 
+    def recomendations
+      service = GroupRecomendation.new(current_user.id)
+      service.perform
+      render_success_array(service.serialized_groups, GroupSerializer)
+    end
+
     private
 
     def set_group

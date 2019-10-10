@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     resources :disciplines, except: [:new, :edit, :destroy]
     resources :courses, except: [:new, :edit, :destroy]
     resources :institutions, except: [:new, :edit, :destroy]
-    resources :groups, except: [:new, :edit, :destroy]
+    resources :groups, except: [:new, :edit, :destroy] do
+      get :recomendations, on: :collection
+    end
     resources :subscriptions, only: [:index, :create, :update, :destroy]
     resources :managers, only: [:create, :destroy]
     resources :bans, only: [:create, :destroy]
