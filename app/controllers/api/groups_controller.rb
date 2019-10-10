@@ -51,11 +51,11 @@ module Api
     end
 
     def group_params
-      params.require(:group).permit(:name, :institution_id, :course_id, :discipline_id)
+      params.require(:group).permit(:name, :description, :institution_id, :course_id, :discipline_id)
     end
 
     def update_group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, :description)
     end
   end
 end
