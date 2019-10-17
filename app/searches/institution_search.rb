@@ -4,6 +4,6 @@ class InstitutionSearch < Searchlight::Search
   end
 
   def search_name
-    query.where('name like :name', name: "%#{name}%")
+    query.where('name ilike :name', name: "%#{name}%")
   end
 end

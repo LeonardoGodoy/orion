@@ -1,38 +1,104 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Institutions</h1>
+<div class="row title left">
+			<div class="col s12">
+				Instituições	
+			</div>
+		</div>
+		<div class="row description left">
+			<div class="col s12">
+				Administre todas as instituições cadastradas no sistema
+			</div>
+		</div>
 
-<%= form_tag institutions_path, method: :GET do %>
-  <%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
-    <div class="field">
-      <%= f.label :search %>
-      <%= f.text_field :name %>
-    </div>
-  <% end %>
-<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Subsctiptions</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+		<div class="section no-pad-bot" id="index-banner">
+			<div class="container">
+				<div class="row center">
+					<div class="col s12">
+            <%=image_tag 'undraw_apartment_rent_o0ut@3x', class: 'responsive-img custom-image' %>
+            <%# <img class="responsive-img custom-image" src="assets/undraw_apartment_rent_o0ut@3x.png"> %>
+          </div>
+				</div>
+			</div>
+		</div>
+		<%# <div class="container">
+			<div class="row">
+				<div class="col s1"></div>
+				<div class="input-field col s10 search-field">        
+					<i class="material-icons prefix blue-text lighten-2">search</i>
+					<input type="text">
+					<label>Informe o nome ou parte dele</label>
+				</div>
+				<div class="col s1"></div>
+			</div>
+		</div> %>
 
-  <tbody>
-    <% @institutions.each do |institution| %>
-      <tr>
-        <td><%= institution.name %></td>
-        <td><i class="material-icons tiny">person</i> <%= institution.subscriptions.size %> </span></td>
-        <td><%= link_to 'Show', institution %></td>
-        <td><%= link_to 'Edit', edit_institution_path(institution) %></td>
-        <td><%= link_to 'Destroy', institution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= paginate @institutions %>
+    <div class="container">
+			<div class="row">
+				<div class="col s1"></div>
+				  <%= form_tag institutions_path, method: :GET do %>
+            <%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
+              <div class="input-field col s10 search-field">
+              	<i class="material-icons prefix blue-text lighten-2">search</i>
+                <%= f.text_field :name %>
+                <label>Informe o nome ou parte dele</label>
+              </div>
+            <% end %>
+          <% end %>
+				<div class="col s1"></div>
+			</div>
+		</div>
 
-<%= link_to 'New Institution', new_institution_path %>
+  
+
+		<table class="z-depth-1 round-corners highlight">
+			<thead>
+				<tr class="description">
+					<th>Nome</th>
+          <th>Inscritos</th>
+					<th>Excluir</th>
+				</tr>
+			</thead>
+			<tbody>
+        <% @institutions.each do |institution| %>
+          <tr>
+            <td><%= institution.name %></td>
+            <td><i class="material-icons tiny">person</i> <%= institution.subscriptions.size %> </span></td>
+            <td>
+                <%= link_to institution, method: :delete, data: { target: 'confirm-modal' } do %>
+                  <i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Excluir">delete</i>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>
+			</tbody>
+		</table>
+    <%= paginate @institutions %>
+	</main>
+
+	<div id="confirm-modal" class="modal center valign-wrapper custom-modal">
+		<div class="modal-content">
+			<p>Excluir a instituição selecionada?</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Sim</a>
+			<a class="modal-close waves-effect waves-red btn-flat">Não</a>
+		</div>
+	</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+  $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
