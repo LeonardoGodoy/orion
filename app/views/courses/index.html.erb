@@ -15,7 +15,9 @@
 		<div class="section no-pad-bot" id="index-banner">
 			<div class="container">
 				<div class="row center">
-					<div class="col s12"><img class="responsive-img custom-image" src="assets/undraw_deliveries_131a@3x.png"></div>
+					<div class="col s12">
+           <%=image_tag 'undraw_deliveries_131a@3x', class: 'responsive-img custom-image' %>
+          </div>
 				</div>
 			</div>
 		</div>
@@ -38,6 +40,7 @@
 			<thead>
 				<tr class="description">
 					<th>Nome</th>
+					 <th>Inscritos</th>
 					<th class="center">Ação</th>
 				</tr>
 			</thead>
@@ -45,6 +48,7 @@
 			  <% @courses.each do |course| %>
             <tr>
             	<td><%= course.name %></td>
+				<td><i class="material-icons tiny">person</i> <%= course.subscriptions.size %> </span></td>
               <td class="center">
                 <%= link_to course, method: :delete, data: { target: 'confirm-modal' } do %>
                   <i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Excluir">delete</i>
