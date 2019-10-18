@@ -1,70 +1,69 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row title left">
-	
-		<div class="col s12">
-				Grupos
-			</div>
-		</div>
-		<div class="row description left">
-			<div class="col s12">
-				Administre todos os grupos
-			</div>
-		</div>
+  <div class="col s12">
+    Grupos
+  </div>
+</div>
+<div class="row description left">
+  <div class="col s12">
+    Administre todos os grupos
+  </div>
+</div>
 
-		<div class="section no-pad-bot" id="index-banner">
-			<div class="container">
-				<div class="row center">
-					<div class="col s12">
-            <%=image_tag 'undraw_community_8nwl@3x', class: 'responsive-img custom-image' %>
-          </div>
-				</div>
-			</div>
-		</div>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <div class="row center">
+      <div class="col s12">
+        <%=image_tag 'undraw_community_8nwl@3x', class: 'responsive-img custom-image' %>
+      </div>
+    </div>
+  </div>
+</div>
 
-   		<div class="container">
-			<div class="row">
-				<div class="col s1"></div>
-				  	<%= form_tag groups_path, method: :GET do %>
-						<%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
-						<div class="input-field col s10 search-field">
-							<i class="material-icons prefix blue-text lighten-2">search</i>
-							<%= f.text_field :name %>
-							<label>Informe o nome ou parte dele</label>
-						</div>
-						<% end %>
-          			<% end %>
-				<div class="col s1"></div>
-			</div>
-		</div>
-		<table class="z-depth-1 round-corners highlight">
-			<thead>
-				<tr class="description">
-					<th>Nome</th>
-          <th>Instituição</th>
-          <th>Curso</th>
-          <th>Disciplina</th>
-          <th>Inscritos</th>
-					<th>Excluir</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @groups.each do |group| %>
-					<tr>
-						  <td><%= group.name %></td>
-              <td><%= group.institution.try(:name) %></td>
-              <td><%= group.course.try(:name) %></td>
-              <td><%= group.discipline.try(:name) %></td>
-						<td>
-              <i class="material-icons tiny" data-tooltip="Nº de Participantes">person</i> <%= group.subscriptions.size %> </span></td>
-						<td>
-							<%= link_to group, method: :delete, data: { target: 'confirm-modal' } do %>
-							<i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Excluir">delete</i>
-							<% end %>
-						</td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-    	<%= paginate @groups %>
-	</main>
+<div class="container">
+  <div class="row">
+    <div class="col s1"></div>
+    <%= form_tag groups_path, method: :GET do %>
+      <%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
+      <div class="input-field col s10 search-field">
+        <i class="material-icons prefix blue-text lighten-2">search</i>
+        <%= f.text_field :name %>
+        <label for='search_name'>Informe o nome ou parte dele</label>
+      </div>
+      <% end %>
+    <% end %>
+    <div class="col s1"></div>
+  </div>
+</div>
+<table class="z-depth-1 round-corners highlight">
+  <thead>
+    <tr class="description">
+      <th>Nome</th>
+      <th>Instituição</th>
+      <th>Curso</th>
+      <th>Disciplina</th>
+      <th>Inscritos</th>
+      <th>Excluir</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= group.institution.try(:name) %></td>
+        <td><%= group.course.try(:name) %></td>
+        <td><%= group.discipline.try(:name) %></td>
+        <td>
+          <i class="material-icons tiny" data-tooltip="Nº de Participantes">person</i> <%= group.subscriptions.size %>
+          </span></td>
+        <td>
+          <%= link_to group, method: :delete, data: { target: 'confirm-modal' } do %>
+            <i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Excluir">delete</i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @groups %>
