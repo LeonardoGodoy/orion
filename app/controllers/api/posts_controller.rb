@@ -56,11 +56,11 @@ module Api
     end
 
     def post_params
-      params.require(:post).permit(:title, :content, :group_id)
+      params.require(:post).permit(:title, :content, :group_id, files: [])
     end
 
     def update_post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, files: [])
     end
   end
 end

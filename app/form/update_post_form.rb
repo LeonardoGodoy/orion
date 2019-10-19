@@ -1,7 +1,7 @@
 class UpdatePostForm
   include FormConcern
 
-  attr_accessor :title, :content, :user_id, :post_id
+  attr_accessor :title, :content, :files, :user_id, :post_id
 
   validates :user, :post, presence: true
 
@@ -34,7 +34,8 @@ class UpdatePostForm
   def post_params
     {
       title: title,
-      content: content
+      content: content,
+      files: files
     }
   end
 end

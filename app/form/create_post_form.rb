@@ -2,7 +2,7 @@ class CreatePostForm
   include FormConcern
   include ValidateStudentForm
 
-  attr_accessor :title, :content, :user_id, :group_id
+  attr_accessor :title, :content, :files, :user_id, :group_id
 
   validates :user, :group, presence: true
 
@@ -40,6 +40,7 @@ class CreatePostForm
     {
       title: title,
       content: content,
+      files: files,
       user_id: user_id,
       group_id: group_id
     }
