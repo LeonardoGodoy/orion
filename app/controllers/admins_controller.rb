@@ -20,7 +20,7 @@ class AdminsController < ApplicationController
     @admin = Admin.new(admin_params)
 
     if @admin.save
-      redirect_to @admin, notice: 'Admin was successfully created.'
+      redirect_to admins_url, notice: 'Admin was successfully created.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class AdminsController < ApplicationController
 
   def update
     if @admin.update(admin_params)
-      redirect_to @admin, notice: 'Admin was successfully updated.'
+      redirect_to admins_url, notice: 'Admin was successfully updated.'
     else
       render :edit
     end

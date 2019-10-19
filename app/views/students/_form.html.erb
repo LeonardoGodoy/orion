@@ -1,32 +1,67 @@
+<div class="row"></div>
+
 <%= form_with(model: student, local: true) do |form| %>
-  <% if student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+<% if student.errors.any? %>
+<div id="error_explanation">
+  <ul>
+    <% student.errors.full_messages.each do |message| %>
+    <li class="chip error-chip">
+      <%= message %>
+      <i class="close material-icons">close</i>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-      <ul>
-      <% student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<div class="row">
+  <div class="col s1 m2 l3"></div>  
+  <div class="col s10 m8 l6 description form-label">Nome</div>
+  <div class="col s1 m2 l3"></div>  
+</div>
+<div class="row move-up">
+  <div class="col s1 m2 l3"></div>  
+  <div class="col s10 m8 l6 input-field z-depth-1 custom-field">
+    <%= form.text_field :name, class: "validate", placeholder: "Nome", required: true %>
+    <span class="helper-text" data-error="Informe um nome"></span>
+    <div class="col s1 m2 l3"></div>  
   </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.email_field :email %>
+</div>
+<div class="row">
+  <div class="col s1 m2 l3"></div>  
+  <div class="col s10 m8 l6 description form-label">Email</div>
+  <div class="col s1 m2 l3"></div>  
+</div>
+<div class="row move-up">
+  <div class="col s1 m2 l3"></div>  
+  <div class="col s10 m8 l6 input-field z-depth-1 custom-field">
+    <%= form.email_field :email, class: "validate", placeholder: "Email", required: true %>
+    <span class="helper-text" data-error="Email inválido (necessário formato exemplo@exemplo.com)"></span>
   </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+</div>
+<div class="row">
+  <div class="col s1 m2 l3"></div>  
+  <div class="col s10 m8 l6 description form-label">Senha</div>
+  <div class="col s1 m2 l3"></div>  
+</div>
+<div class="row move-up">
+  <div class="col s1 m2 l3"></div>  
+  <div class="col s10 m8 l6 input-field z-depth-1 custom-field">
+    <%= form.password_field :password, placeholder: "Senha", class: "validate", required: true, minlength: "6" %>
+    <span class="helper-text" data-error="Senha inválida (mínimo 6 caracteres)"></span>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="col s1 m2 l3"></div>  
+</div>
+<div class="row center">
+  <div class="col s3"></div>
+  <div class="col s3">
+    <%= link_to students_path do %>
+    <div class="btn center blue accent-2 custom-button">VOLTAR</div>
+    <% end %>
   </div>
+  <div class="col s3">
+    <input type="submit" class="btn center blue accent-2 custom-button" value="SALVAR"/>
+  </div>
+  <div class="col s3"></div>
+</div>
 <% end %>

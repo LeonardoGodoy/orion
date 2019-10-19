@@ -4,21 +4,21 @@
       <h2>LOGO</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="row">
-          <div class="input-field z-depth-1 custom-field">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'validate', id: 'email-input' %>
-            <label for="email-input">Email</label>
-          </div>
-
-          <div class="input-field z-depth-1 custom-field">
-            <%= f.password_field :password, autocomplete: "current-password", minlength: 6, class: 'validate' %>
-            <label for="password-input">Senha</label>
-          </div>
-
-         <%= link_to "Esqueceu sua senha?", new_password_path(resource_name), class: "text-blue accent-2 right" %>
+      <div class="row">
+        <div class="input-field z-depth-1 custom-field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'validate', id: 'email-input', placeholder: "Email", required: "true" %>
+          <span class="helper-text" data-error="Email inválido"></span>
+        </div>
+        <div class="row"></div>
+        <div class="input-field z-depth-1 custom-field">
+          <%= f.password_field :password, autocomplete: "current-password", class: 'validate', placeholder: "Senha", required: "true" %>
+          <span class="helper-text" data-error="Senha inválida"></span>
         </div>
 
-        <%= f.submit "Log in", class: 'btn center blue theme custom-button', value: 'Login' %>
+        <%= link_to "Esqueceu sua senha?", new_password_path(resource_name), class: "text-blue accent-2 right forgot" %>
+      </div>
+
+      <%= f.submit "Log in", class: 'btn center blue theme custom-button', value: 'Login' %>
       <% end %>
     </div>
   </div>
