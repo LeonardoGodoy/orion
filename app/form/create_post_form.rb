@@ -40,7 +40,7 @@ class CreatePostForm
     {
       title: title,
       content: content,
-      files: files,
+      files: files || [],
       user_id: user_id,
       group_id: group_id
     }
