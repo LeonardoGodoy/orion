@@ -1,6 +1,6 @@
 class PostSearch < Searchlight::Search
   def base_query
-    Post.all
+    Post.all.order(created_at: :desc)
   end
 
   def search_title

@@ -35,7 +35,7 @@ class UpdatePostForm
     {
       title: title,
       content: content,
-      files: files
+      files: files || []
     }
   end
 end
