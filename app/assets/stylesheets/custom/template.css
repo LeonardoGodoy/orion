@@ -186,3 +186,8 @@ table.highlight > tbody > tr:hover {
 .hand-cursor {
   cursor: pointer;
 }
+
+.logo-size {
+  height: 80%!important;
+  width:  80%!important;
+}
