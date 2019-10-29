@@ -52,7 +52,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'active_model_serializers', '0.10.0'
 gem 'awesome_print', '1.8.0'
-gem 'devise', '4.5.0'
+gem 'devise', '4.7.1'
 gem 'faker', '2.3.0'
 gem 'jwt', '2.2.1'
 gem 'kaminari', '1.1.1'
