@@ -70,6 +70,15 @@ if Rails.env.development?
               .files
               .attach(io: File.open(path), filename: file)
         end
+
+        rand(1..10).times do
+          user_id = Student.joins(:subscriptions)
+                           .where(subscriptions: { group_id: group.id }).sample.id
+          post_id = form.post.id
+          like = rand(0..3) > 1
+
+          CreatePostClassificationForm.new(post_id: post_id, user_id: user_id, like: like).perform
+        end
       else
         puts form.post.errors.messages
       end
