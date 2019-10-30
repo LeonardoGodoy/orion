@@ -1,7 +1,7 @@
 class UpdatePostForm
   include FormConcern
 
-  attr_accessor :title, :content, :files, :user_id, :post_id
+  attr_accessor :title, :content, :files, :files_to_remove, :user_id, :post_id
 
   validates :user, :post, presence: true
 
@@ -18,6 +18,7 @@ class UpdatePostForm
   def perform
     return false if invalid?
 
+    purge_files
     post.update(post_params)
   end
 
@@ -27,6 +28,15 @@ class UpdatePostForm
 
   def post
     @post ||= Post.find_by(id: post_id)
+  end
+
+  def purge_files
+    return if files_to_remove.blank?
+
+    files_to_remove.each do |_index, blob_id|
+      blob = post.files.find_by(blob_id: blob_id)
+      blob.purge if blob.present?
+    end
   end
 
   private
