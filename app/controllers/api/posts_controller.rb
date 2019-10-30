@@ -4,7 +4,7 @@ module Api
 
     def index
       @posts = PostSearch.new(search_params).results
-      render_success_array(@posts, PostSerializer)
+      render_success_array(@posts, PostSerializer, user_id: current_user.id)
     end
 
     def show
@@ -60,7 +60,7 @@ module Api
     end
 
     def update_post_params
-      params.require(:post).permit(:title, :content, files: [])
+      params.require(:post).permit(:title, :content, files: [], files_to_remove: {})
     end
   end
 end

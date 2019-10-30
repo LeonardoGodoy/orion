@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     resources :bans, only: [:create, :destroy]
     resources :events, except: [:new]
     resources :performances, except: [:new]
-    resources :posts, except: [:new]
+    resources :posts, except: [:new] do
+      resources :classifications, only: [:create, :destroy], controller: :post_classifications
+    end
   end
 end

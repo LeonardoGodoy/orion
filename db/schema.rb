@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_12_224556) do
+ActiveRecord::Schema.define(version: 2019_10_22_232614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 2019_10_12_224556) do
     t.index ["user_id"], name: "index_performances_on_user_id"
   end
 
+  create_table "post_classifications", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "user_id"
+    t.boolean "like", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_classifications_on_post_id"
+    t.index ["user_id"], name: "index_post_classifications_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "group_id"
@@ -98,6 +108,8 @@ ActiveRecord::Schema.define(version: 2019_10_12_224556) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "like_count", default: 0
+    t.integer "unlike_count", default: 0
     t.index ["group_id"], name: "index_posts_on_group_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -138,6 +150,8 @@ ActiveRecord::Schema.define(version: 2019_10_12_224556) do
   add_foreign_key "events", "users"
   add_foreign_key "performances", "disciplines"
   add_foreign_key "performances", "users"
+  add_foreign_key "post_classifications", "posts"
+  add_foreign_key "post_classifications", "users"
   add_foreign_key "posts", "groups"
   add_foreign_key "posts", "users"
   add_foreign_key "subscriptions", "groups"
