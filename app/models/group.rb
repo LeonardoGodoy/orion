@@ -5,6 +5,7 @@ class Group < ApplicationRecord
 
   has_many :subscriptions
   has_many :events
+  has_many :posts
   has_many :users, through: :subscriptions
 
   validates :name, presence: true

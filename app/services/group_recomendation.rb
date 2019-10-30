@@ -57,7 +57,10 @@ class GroupRecomendation
 
   def serialized_groups
     @serialized_groups ||= begin
-      results.map { |row| groups_hash[row['group_id']] }
+      results.map do |row|
+        group = groups_hash[row['group_id']]
+        GroupSerializer.new(group, colleagues: row['total']).as_json
+      end
     end
   end
 
