@@ -1,0 +1,11 @@
+---
+  - name: 'User'
+    email: 'user@user.com'
+  - name: 'Leonardo Godoy'
+    email: 'leo@gmail.com'
+  - name: 'Luiz Otávio'
+    email: 'luiz@gmail.com'
+  - name: 'Thiago Cezario'
+    email: 'thaigo@gmail.com'
+  - name: 'Marcos Henrique'
+    email: 'marcos@gmail.com'
