@@ -46,7 +46,7 @@ class CoursesController < ApplicationController
   end
 
   def search_params
-    params.permit(search: [:name])[:search] || {}
+    params.permit(search: [:name, :institution_id])[:search] || {}
   end
 
   def course_params
