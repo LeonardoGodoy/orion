@@ -36,11 +36,11 @@ module Api
     end
 
     def search_params
-      params.permit(:name)
+      params.permit(:name, :course_id)
     end
 
     def discipline_params
-      params.require(:discipline).permit(:name)
+      params.require(:discipline).permit(:name, :course_id)
     end
   end
 end
