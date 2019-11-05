@@ -3,6 +3,10 @@ class CourseSearch < Searchlight::Search
     Course.all
   end
 
+  def search_institution_id
+    query.where(institution_id: institution_id)
+  end
+
   def search_name
     query.where('name ilike :name', name: "%#{name}%")
   end
