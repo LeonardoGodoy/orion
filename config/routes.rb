@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     resources :sessions, only: :create
     resources :students, only: :create
 
+    post 'passwords/recover', to: 'passwords#recover'
+    post 'passwords/reset', to: 'passwords#reset'
+
     resources :disciplines, except: [:new, :edit, :destroy]
     resources :courses, except: [:new, :edit, :destroy]
     resources :institutions, except: [:new, :edit, :destroy]
