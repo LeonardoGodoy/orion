@@ -1,6 +1,6 @@
 module Seeds
   module SeedsHelper
-    def self.generate_group(user, discipline)
+    def self.generate_group(user, discipline, private_group)
       split = discipline.name.split('-')
       name = split[1] || split[0]
 
@@ -9,7 +9,8 @@ module Seeds
         course_id: discipline.course.id,
         discipline_id: discipline.id,
         name: name.squish,
-        description: 'Adicione uma descrição ao grupo'
+        description: 'Adicione uma descrição ao grupo',
+        private_group: private_group
       }
 
       form = CreateGroupForm.new(group_params)

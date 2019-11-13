@@ -20,7 +20,7 @@ if Rails.env.development?
 
   puts 'Generating random groups...'
   Discipline.all.each do |discipline|
-    Seeds::SeedsHelper.generate_group(Student.all.sample, discipline)
+    Seeds::SeedsHelper.generate_group(Student.all.sample, discipline, rand(1..10) > 8)
   end
 
   puts 'Subscribing members...'

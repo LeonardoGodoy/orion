@@ -7,6 +7,11 @@ class GroupSearch < Searchlight::Search
     query.where('name like :name', name: "%#{name}%")
   end
 
+  def search_exclude_privates
+    exclude = ActiveRecord::Type::Boolean.new.cast(exclude_privates)
+    exclude ? query.where(private_group: false) : query
+  end
+
   def search_institution_id
     query.where(institution_id: institution_id)
   end

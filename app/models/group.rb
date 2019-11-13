@@ -10,6 +10,8 @@ class Group < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :privates, -> { where(private_group: true) }
+
   def manager?(user)
     subscriptions.managers.exists?(user_id: user.id)
   end
