@@ -6,7 +6,7 @@ module Api
       student = Student.new(user_params)
 
       if student.save
-        data = student.slice(:id).merge(exp: 30.minutes.from_now.to_i)
+        data = student.slice(:id)
         token = JWT.encode(data, Rails.application.secrets.secret_key_base)
 
         render_created(token: token, student: student.as_json)
