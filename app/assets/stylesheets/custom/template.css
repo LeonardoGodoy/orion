@@ -114,11 +114,16 @@ table.highlight > tbody > tr:hover {
 }
 
 .ban-button {
-  color: #ef5350;
   font-weight: bold;
   margin-top: 15px;
   border-radius: 20px;
   width: 150px;
+}
+
+.error-chip {
+  color: #ef5350;
+  font-weight: bold;
+  background-color: #ffebee;
 }
 
 .admin-button {
@@ -176,4 +181,13 @@ table.highlight > tbody > tr:hover {
 .search-field input[type="text"]:focus {
   border-bottom: 1px solid #64b5f6 !important;
   box-shadow: 0 1px 0 0 #64b5f6 !important;
+}
+
+.hand-cursor {
+  cursor: pointer;
+}
+
+.logo-size {
+  height: 80%!important;
+  width:  80%!important;
 }

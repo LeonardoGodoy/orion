@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row title left">
   <div class="col s12">
     Grupos
@@ -25,13 +23,13 @@
   <div class="row">
     <div class="col s1"></div>
     <%= form_tag groups_path, method: :GET do %>
-      <%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
-      <div class="input-field col s10 search-field">
-        <i class="material-icons prefix blue-text lighten-2">search</i>
-        <%= f.text_field :name %>
-        <label for='search_name'>Informe o nome ou parte dele</label>
-      </div>
-      <% end %>
+    <%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
+    <div class="input-field col s10 search-field">
+      <i class="material-icons prefix blue-text lighten-2">search</i>
+      <%= f.text_field :name %>
+      <label for='search_name'>Informe o nome ou parte dele</label>
+    </div>
+    <% end %>
     <% end %>
     <div class="col s1"></div>
   </div>
@@ -40,29 +38,44 @@
   <thead>
     <tr class="description">
       <th>Nome</th>
-      <th>Instituição</th>
-      <th>Curso</th>
-      <th>Disciplina</th>
-      <th>Inscritos</th>
-      <th>Excluir</th>
+      <th class="center">Informações</th>
+      <th class="center">Excluir</th>
     </tr>
   </thead>
   <tbody>
     <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.name %></td>
-        <td><%= group.institution.try(:name) %></td>
-        <td><%= group.course.try(:name) %></td>
-        <td><%= group.discipline.try(:name) %></td>
-        <td>
-          <i class="material-icons tiny" data-tooltip="Nº de Participantes">person</i> <%= group.subscriptions.size %>
-          </span></td>
-        <td>
-          <%= link_to group, method: :delete, data: { target: 'confirm-modal' } do %>
-            <i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Excluir">delete</i>
-          <% end %>
-        </td>
-      </tr>
+    <tr>
+      <td><%= group.name %></td>
+      <td class="center">
+        <a data-target="<%= group.id %>info" class="modal-trigger hand-cursor"><i class="material-icons blue-text accent-2 tooltipped" data-position="bottom" data-tooltip="Clique para mais">info</i></a>
+      </td>
+      <td class="center">
+        <a data-target="<%= group.id %>" class="modal-trigger hand-cursor"><i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Excluir">delete</i></a>
+      </td>
+    </tr>
+    <div id="<%= group.id %>" class="modal center valign-wrapper custom-modal">
+      <div class="modal-content">
+        <p>Excluir o grupo <%= group.name %>?</p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to group, method: :delete do %>
+        <div class="modal-close waves-effect waves-green btn-flat">Sim</div>
+        <% end %>
+        <a class="modal-close waves-effect waves-red btn-flat">Não</a>
+      </div>
+    </div>
+    <div id="<%= group.id %>info" class="modal valign-wrapper custom-modal">
+      <div class="modal-content">
+        <h5 class="description"><%= group.name %></h5>
+        <p>Instituição: <%= group.institution.try(:name) %></p>
+        <p>Curso: <%= group.course.try(:name) %></p>
+        <p>Disciplina: <%= group.discipline.try(:name) %></p>
+        <p>Inscritos : <%= group.subscriptions.size %></p>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-close waves-effect waves-red btn-flat">Fechar</a>
+      </div>
+    </div>
     <% end %>
   </tbody>
 </table>

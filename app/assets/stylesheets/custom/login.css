@@ -1,62 +1,56 @@
 html, body {
 	height: 100vh;
 	overflow-y: hidden;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 .fill {
 	min-height: 100vh !important;
 }
 
+h4,h5 {
+	color: white;
+}
+
 .c1 {
 	padding:50px;
-}
-/* label color */
-.input-field label {
-	color: #0d47a1!important;
-	font-weight: bolder;
-}
-.input-field input[type="email"] {
-	width: 99%;
-	border-bottom: none!important;
-}
-/* label focus color */
-.input-field input[type=email]:focus + label {
-	color: #0d47a1!important;
-}
-/* label underline focus color */
-.input-field input[type=email]:focus {
-	border-bottom: none!important;
-	box-shadow: none!important;
-}
-/* invalid color */
-.input-field input[type=email].invalid {
-	border-bottom: none!important;
-	box-shadow: none!important;
-}
-.input-field input[type="password"] {
-	width: 99%;
-	border-bottom: none!important;
-}
-/* label focus color */
-.input-field input[type=password]:focus + label {
-	color: #0d47a1!important;
-}
-/* label underline focus color */
-.input-field input[type=password]:focus {
-	border-bottom: none!important;
-	box-shadow: none!important;
-}
-/* invalid color */
-.input-field input[type=password].invalid {
-	border-bottom: none!important;
-	box-shadow: none!important;
 }
 
 .custom-field {
 	border-radius: 6px;
+	height: 51px;
 }
 
 .custom-button {
 	border-radius: 20px;
 	width:50%;
 	letter-spacing: 4px;
+	font-weight: bolder;
+}
+
+.forgot:hover {
+	font-weight: bold;
+}
+
+.input-field input[type=email],
+.input-field input[type=password],
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus,
+.input-field input[type=email].valid,
+.input-field input[type=password].valid,
+.input-field input[type=email].invalid,
+.input-field input[type=password].invalid {
+     border-bottom: none!important;
+     box-shadow: none!important;
+}
+
+.description {
+  font-weight: bold;
+  color: #768dfc;
+  font-family: "Open Sans", sans-serif;
+}
+
+.logo-size {
+  height: 50%!important;
+  width:  50%!important;
 }

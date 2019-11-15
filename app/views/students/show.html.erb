@@ -1,9 +1,73 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @student.name %>
-</p>
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<div class="row title left">
+	<div class="col s12">
+		Aluno
+	</div>
+</div>
+<div class="row description left">
+	<div class="col s12">
+		Dados do aluno
+	</div>
+</div>
+<div class="row"></div>
+<div class="center title"><%= @student.name %></div>
+<div class="row center">
+	<%= link_to edit_student_path do %>
+	<div class="waves-effect waves-blue blue accent-2 btn ban-button">
+		<i class="material-icons left">edit </i>EDITAR
+	</div>
+	<% end %> 
+	<%#= link_to student, method: :delete, data: {target: 'confirm-modal'} do %>
+	<div class="waves-effect waves-red red lighten-5 btn ban-button modal-trigger red-text">
+		<i class="material-icons left">not_interested</i>BANIR
+	</div>
+	<%# end %>
+</div>
+<div class="description">Grupos</div>	
+<table class="z-depth-1 round-corners highlight">
+	<thead>
+		<tr class="description">
+			<th>Nome</th>
+			<th class="center">Informações</th>
+			<th class="center">Ações</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @student.groups.each do |st_group| %>
+		<tr>
+			<td><%= st_group.name %></td>
+			<td class="center">
+				<a data-target="<%= st_group.id %>info" class="modal-trigger hand-cursor"><i class="material-icons blue-text accent-2 tooltipped" data-position="bottom" data-tooltip="Clique para mais">info</i></a>
+			</td>
+			<td class="center">
+				<a data-target="<%= st_group.id %>" class="modal-trigger hand-cursor"><i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Banir do grupo">not_interested</i></a>
+			</td>
+		</tr>
+		<div id="<%= st_group.id %>" class="modal center valign-wrapper custom-modal">
+			<div class="modal-content">
+				<p>Banir o aluno do grupo <%= st_group.name %>?</p>
+			</div>
+			<div class="modal-footer">
+				<%= link_to st_group, method: :delete do %>
+				<div class="modal-close waves-effect waves-green btn-flat">Sim</div>
+				<% end %>
+				<a class="modal-close waves-effect waves-red btn-flat">Não</a>
+			</div>
+		</div>
+		<div id="<%= st_group.id %>info" class="modal valign-wrapper custom-modal">
+			<div class="modal-content">
+				<h5 class="description"><%= st_group.name %></h5>
+				<p>Instituição: <%= st_group.institution.try(:name) %></p>
+				<p>Curso: <%= st_group.course.try(:name) %></p>
+				<p>Disciplina: <%= st_group.discipline.try(:name) %></p>
+				<p>Inscritos : <%= st_group.subscriptions.size %></p>
+			</div>
+			<div class="modal-footer">
+				<a class="modal-close waves-effect waves-red btn-flat">Fechar</a>
+			</div>
+		</div>
+		<% end %>     
+	</tbody>
+</table>
+<%#= paginate @student.groups %>
+<div class="row"></div>
+<div class="row"></div>

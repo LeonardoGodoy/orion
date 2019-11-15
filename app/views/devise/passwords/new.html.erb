@@ -1,16 +1,33 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="row">
+	<div class="col s12 m12 l5 fill">
+		<div class="container center c1">
+			<%=image_tag 'logo3', class: 'responsive-img custom-image' %>
+			<p class="description">Recupere sua senha</p>
+			<div class="row"></div>
+			<div class="row"></div>
+			<div class="row"></div>
+			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+			<%= devise_error_messages! %>
+			<div class="row">
+				<div class="input-field z-depth-1 custom-field">
+					<%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'validate', id: 'email-input', placeholder: "Email", required: true %>
+					<span class="helper-text" data-error="Email inválido"></span>
+				</div>
+				<div class="row"></div>
+				<%= f.submit "Log in", class: 'btn center blue theme custom-button', value: 'ENVIAR!' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="col l7 hide-on-med-and-down blue theme fill valign-wrapper">
+		<div class="container c2">
+			<div class="row center">
+				<%=image_tag 'logo', class: 'responsive-img custom-image logo-size' %>
+				<h5 class="white-text">Junte-se aos seus colegas</h5>
+			</div>
+			<div class="row center">
+				<img class="responsive-img" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/Group_chat_unwm.svg">
+			</div>
+		</div>
+	</div>
+</div>
