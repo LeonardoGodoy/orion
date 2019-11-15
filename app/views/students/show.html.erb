@@ -1,6 +1,6 @@
 <div class="row title left">
   <div class="col s12">
-    Aluno
+    Estudante
   </div>
 </div>
 <div class="row description left">
@@ -16,11 +16,6 @@
     <i class="material-icons left">edit </i>EDITAR
   </div>
   <% end %>
-  <%#= link_to student, method: :delete, data: {target: 'confirm-modal'} do %>
-  <div class="waves-effect waves-red red lighten-5 btn ban-button modal-trigger red-text">
-    <i class="material-icons left">not_interested</i>BANIR
-  </div>
-  <%# end %>
 </div>
 <div class="description">Grupos</div>
 <table class="z-depth-1 round-corners highlight">
@@ -37,7 +32,7 @@
     <% st_group = subscription.group %>
 
     <tr>
-      <td><%= st_group.name %> <%= subscription.banned %></td>
+      <td><%= st_group.name %></td>
       <td class="center">
         <% if subscription.banned %>
         <div class="waves-effect waves-blue red accent-2 btn admin-button">
