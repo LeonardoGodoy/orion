@@ -4,7 +4,7 @@ class PostSearch < Searchlight::Search
   end
 
   def search_title
-    query.where('title like :title', title: "%#{title}%")
+    query.where('title ilike :title', title: "%#{title}%")
   end
 
   def search_group_id

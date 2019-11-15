@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   def index
     search = GroupSearch.new(search_params)
-    @groups = paginate(search.results)
+    @groups = paginate(search.results.order(:name))
   end
 
   def show

@@ -3,7 +3,7 @@ class DisciplinesController < ApplicationController
 
   def index
     search = DisciplineSearch.new(search_params)
-    @disciplines = paginate(search.results)
+    @disciplines = paginate(search.results.order(:name))
   end
 
   def show

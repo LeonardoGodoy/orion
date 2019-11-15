@@ -4,13 +4,20 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :disciplines
-  resources :courses
+  resources :admins
+  resources :students
+
   resources :institutions
+  resources :courses
+  resources :disciplines
   resources :groups
 
-  resources :students
-  resources :admins
+  resources :subscriptions, only: [:index, :create, :update, :destroy] do
+    post :activate, on: :member
+    post :inactivate, on: :member
+    post :ban, on: :member
+    post :unban, on: :member
+  end
 
   scope :api, module: :api, defaults: { format: :json } do
     resources :sessions, only: :create

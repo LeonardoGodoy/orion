@@ -3,7 +3,7 @@ class InstitutionsController < ApplicationController
 
   def index
     search = InstitutionSearch.new(search_params)
-    @institutions = paginate(search.results)
+    @institutions = paginate(search.results.order(:name))
   end
 
   def show

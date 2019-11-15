@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
 
   def index
     search = AdminSearch.new(search_params)
-    @admins = paginate(search.results)
+    @admins = paginate(search.results.order(:name))
   end
 
   def show

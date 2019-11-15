@@ -14,20 +14,20 @@
 <div class="waves-effect waves-blue blue accent-2 btn admin-button">
   <i class="material-icons left">add</i>NOVO ALUNO
 </div>
-<% end %> 
+<% end %>
 <div class="row"></div>
 
 <div class="container">
   <div class="row">
     <div class="col s1"></div>
     <%= form_tag students_path, method: :GET do %>
-    <%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
-    <div class="input-field col s10 search-field">
-      <i class="material-icons prefix blue-text lighten-2">search</i>
-      <%= f.text_field :name %>
-      <label>Informe o nome ou parte dele</label>
-    </div>
-    <% end %>
+      <%= fields_for :search, OpenStruct.new(params[:search]) do |f| %>
+      <div class="input-field col s10 search-field">
+        <i class="material-icons prefix blue-text lighten-2">search</i>
+        <%= f.text_field :name %>
+        <label>Informe o nome ou parte dele</label>
+      </div>
+      <% end %>
     <% end %>
     <div class="col s1"></div>
   </div>
@@ -47,12 +47,15 @@
       <td><%= student.email %></td>
       <td class="center">
         <%= link_to student do %>
-        <i class="material-icons blue-text accent-1 tooltipped" data-position="bottom" data-tooltip="Visualizar">remove_red_eye</i>
+        <i class="material-icons blue-text accent-1 tooltipped" data-position="bottom"
+          data-tooltip="Visualizar">remove_red_eye</i>
         <% end %>
         <%= link_to edit_student_path(student), method: :get do %>
         <i class="material-icons blue-text accent-1 tooltipped" data-position="bottom" data-tooltip="Alterar">edit</i>
         <% end %>
-        <a data-target="<%= student.id %>" class="modal-trigger hand-cursor"><i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Excluir">delete</i></a>
+        <a data-target="<%= student.id %>" class="modal-trigger hand-cursor"><i
+            class="material-icons red-text accent-1 tooltipped" data-position="bottom"
+            data-tooltip="Excluir">delete</i></a>
       </td>
     </tr>
     <div id="<%= student.id %>" class="modal center valign-wrapper custom-modal">
@@ -66,7 +69,7 @@
         <a class="modal-close waves-effect waves-red btn-flat">Não</a>
       </div>
     </div>
-    <% end %>     
+    <% end %>
   </tbody>
 </table>
 <%= paginate @students %>
