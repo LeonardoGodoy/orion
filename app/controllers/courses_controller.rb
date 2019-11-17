@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
 
   def index
     search = CourseSearch.new(search_params)
-    @courses = paginate(search.results)
+    @courses = paginate(search.results.order(:name))
   end
 
   def show
