@@ -1,0 +1,24 @@
+attributes:
+  - primary_keys
+  - foreign_key
+  - inheritance
+  - content
+  - timestamps
+disconnected: true
+filename: orion_erd
+filetype: pdf
+indirect: false
+inheritance: true
+markup: true
+notation: simple
+orientation: vertical
+polymorphism: false
+sort: false
+warn: true
+title: Orion Database
+exclude: null
+only: null
+only_recursion_depth: null
+prepend_primary: true
+cluster: false
+splines: spline
