@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :groups, through: :subscriptions
   has_many :performances, dependent: :destroy
+  has_many :absences, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :classifications, class_name: 'PostClassification', dependent: :destroy

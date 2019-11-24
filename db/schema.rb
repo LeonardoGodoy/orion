@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_204649) do
+ActiveRecord::Schema.define(version: 2019_11_20_231349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "absences", force: :cascade do |t|
+    t.date "date"
+    t.integer "year"
+    t.integer "quantity"
+    t.bigint "discipline_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discipline_id"], name: "index_absences_on_discipline_id"
+    t.index ["user_id"], name: "index_absences_on_user_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -73,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_204649) do
     t.datetime "updated_at", null: false
     t.string "description"
     t.boolean "private_group", default: false
+    t.integer "year"
     t.index ["course_id"], name: "index_groups_on_course_id"
     t.index ["discipline_id"], name: "index_groups_on_discipline_id"
     t.index ["institution_id"], name: "index_groups_on_institution_id"
@@ -92,6 +105,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_204649) do
     t.decimal "max_value", default: "100.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "year"
     t.index ["discipline_id"], name: "index_performances_on_discipline_id"
     t.index ["user_id"], name: "index_performances_on_user_id"
   end
@@ -150,6 +164,8 @@ ActiveRecord::Schema.define(version: 2019_11_09_204649) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "absences", "disciplines"
+  add_foreign_key "absences", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "courses", "institutions"
   add_foreign_key "disciplines", "courses"
