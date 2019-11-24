@@ -6,7 +6,7 @@ class ResetPasswordMailer < ApplicationMailer
     @student = params[:student]
     @token   = params[:token]
 
-    mail(to: student.email, subject: 'Recupere sua senha.')
+    mail(to: @student.email, subject: 'Recupere sua senha.')
   end
 
   def reset_link
