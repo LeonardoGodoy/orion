@@ -45,9 +45,12 @@
     <% @disciplines.each do |discipline| %>
     <tr>
       <td><%= discipline.name %></td>
-      <td><i class="material-icons blue-text accent-2">person</i> <%= discipline.subscriptions.size %> </span></td>
+      <td><i class="material-icons blue-text accent-2">group</i> <%= discipline.subscriptions.size %> </span></td>
       <td class="center">
-        <a data-target="<%= discipline.id %>" class="modal-trigger hand-cursor"><i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Excluir">delete</i></a>
+        <div class="waves-effect waves-red red accent-2 btn admin-button">
+          <a data-target="<%= discipline.id %>" class="modal-trigger white-text"><i class="material-icons left white-text">delete</i>Excluir
+          </a>
+        </div>
       </td>
     </tr>
     <div id="<%= discipline.id %>" class="modal center valign-wrapper custom-modal">

@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
 
   def activate
     if @subscription.update(active: true, banned: false)
-      redirect_to student_path(@subscription.user.id), notice: 'Subscriptions was successfully activated.'
+      redirect_to student_path(@subscription.user.id), notice: 'Inscrição ativada com sucesso.'
     else
       redirect_to student_path(@subscription.user.id)
     end
@@ -11,7 +11,7 @@ class SubscriptionsController < ApplicationController
 
   def inactivate
     if @subscription.update(active: false)
-      redirect_to student_path(@subscription.user.id), notice: 'Subscriptions was successfully inactivated.'
+      redirect_to student_path(@subscription.user.id), notice: 'Inscrição desativada com sucesso.'
     else
       redirect_to student_path(@subscription.user.id)
     end
@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
 
   def ban
     if @subscription.update(active: false, banned: true)
-      redirect_to student_path(@subscription.user.id), notice: 'Subscriptions was successfully banned.'
+      redirect_to student_path(@subscription.user.id), notice: 'Banido com sucesso.'
     else
       redirect_to student_path(@subscription.user.id)
     end
@@ -27,7 +27,7 @@ class SubscriptionsController < ApplicationController
 
   def unban
     if @subscription.update(active: true, banned: false)
-      redirect_to student_path(@subscription.user.id), notice: 'Subscriptions was successfully unbanned.'
+      redirect_to student_path(@subscription.user.id), notice: 'Desbanido com sucesso.'
     else
       redirect_to student_path(@subscription.user.id)
     end

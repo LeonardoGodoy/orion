@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
 
   def index
     search = AdminSearch.new(search_params)
-    @admins = paginate(search.results.order(:name))
+    @admins = paginate(search.results)
   end
 
   def show
@@ -20,7 +20,7 @@ class AdminsController < ApplicationController
     @admin = Admin.new(admin_params)
 
     if @admin.save
-      redirect_to admins_url, notice: 'Admin was successfully created.'
+      redirect_to admins_url, notice: "Admin #{@admin.name} criado com sucesso."
     else
       render :new
     end
@@ -28,7 +28,7 @@ class AdminsController < ApplicationController
 
   def update
     if @admin.update(admin_params)
-      redirect_to admins_url, notice: 'Admin was successfully updated.'
+      redirect_to admins_url, notice: "Admin #{@admin.name} alterado com sucesso."
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class AdminsController < ApplicationController
 
   def destroy
     @admin.destroy
-    redirect_to admins_url, notice: 'Admin was successfully destroyed.'
+    redirect_to admins_url, notice: "Admin #{@admin.name} excluído com sucesso."
   end
 
   private

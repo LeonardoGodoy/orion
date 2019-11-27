@@ -48,10 +48,14 @@
       <td><%= admin.email %></td>
       <td class="center">
         <%= link_to edit_admin_path(admin), method: :get do %>
-        <i class="material-icons blue-text accent-1 tooltipped" data-position="bottom" data-tooltip="Alterar">edit</i>
+        <div class="waves-effect waves-blue blue accent-2 btn admin-button">
+          <i class="material-icons left">edit</i>Alterar
+        </div>
         <% end %>
-        <a data-target="<%= admin.id %>" class="modal-trigger hand-cursor"><i class="material-icons red-text accent-1 tooltipped" data-position="bottom" data-tooltip="Excluir">delete</i>
-        </a>
+        <div class="waves-effect waves-red red accent-2 btn admin-button">
+          <a data-target="<%= admin.id %>" class="modal-trigger white-text"><i class="material-icons left white-text">delete</i>Excluir
+          </a>
+        </div>
       </td>
     </tr>
     <div id="<%= admin.id %>" class="modal center valign-wrapper custom-modal">
