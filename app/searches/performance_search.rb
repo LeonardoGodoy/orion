@@ -3,6 +3,10 @@ class PerformanceSearch < Searchlight::Search
     Performance.all
   end
 
+  def search_year
+    query.where(year: year)
+  end
+
   def search_user_id
     query.where(user_id: user_id)
   end

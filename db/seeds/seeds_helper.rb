@@ -10,7 +10,8 @@ module Seeds
         discipline_id: discipline.id,
         name: name.squish,
         description: 'Adicione uma descrição ao grupo',
-        private_group: private_group
+        private_group: private_group,
+        year: 2019
       }
 
       form = CreateGroupForm.new(group_params)
@@ -31,7 +32,8 @@ module Seeds
         discipline_id: group.discipline.id,
         description: 'Nota',
         value: rand(70..100),
-        max_value: 100
+        max_value: 100,
+        year: 2019
       }
       Performance.create(performance_attributes)
     end
@@ -50,8 +52,8 @@ module Seeds
 
     def self.generate_post(student, group)
       data = {
-        title: "Post",
-        content: "Conteúdo",
+        title: 'Post',
+        content: 'Conteúdo',
         user_id: student.id,
         group_id: group.id
       }

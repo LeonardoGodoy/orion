@@ -45,11 +45,11 @@ module Api
     end
 
     def search_params
-      params.permit(:user_id, :discipline_id)
+      params.permit(:user_id, :discipline_id, :year)
     end
 
     def performance_params
-      params.require(:performance).permit(:discipline_id, :description, :value, :max_value)
+      params.require(:performance).permit(:discipline_id, :year, :description, :value, :max_value)
     end
   end
 end

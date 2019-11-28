@@ -2,7 +2,7 @@ class CreateGroupForm
   include FormConcern
 
   attr_accessor :institution_id, :course_id, :discipline_id,
-                :name, :description, :private_group, :user
+                :name, :description, :private_group, :user, :year
 
   validates :user, presence: true
 
@@ -39,6 +39,7 @@ class CreateGroupForm
       institution_id: institution_id,
       course_id: course_id,
       discipline_id: discipline_id,
+      year: year,
       private_group: ActiveRecord::Type::Boolean.new.cast(private_group),
       name: name.try(:strip),
       description: description.try(:strip)

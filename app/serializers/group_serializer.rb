@@ -1,5 +1,5 @@
 class GroupSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :created_at, :updated_at, :metadata
+  attributes :id, :name, :description, :year, :created_at, :updated_at, :metadata
   attribute :colleagues, if: :include_colleagues?
   attribute :private_group, key: :private
 

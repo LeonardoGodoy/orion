@@ -47,15 +47,15 @@ module Api
     end
 
     def search_params
-      params.permit(:name, :exclude_privates, :institution_id, :course_id, :discipline_id, :user_id)
+      params.permit(:name, :year, :exclude_privates, :institution_id, :course_id, :discipline_id, :user_id)
     end
 
     def group_params
-      params.require(:group).permit(:name, :private_group, :description, :institution_id, :course_id, :discipline_id)
+      params.require(:group).permit(:name, :year, :private_group, :description, :institution_id, :course_id, :discipline_id)
     end
 
     def update_group_params
-      params.require(:group).permit(:name, :private_group, :description)
+      params.require(:group).permit(:name, :year, :private_group, :description)
     end
   end
 end
