@@ -1,11 +1,11 @@
 <ul id="slide-out" class="sidenav sidenav-fixed blue theme white-text">
   <li>
     <div class="user-view center">
-      <%= image_tag 'logo4', class: 'responsive-img custom-image logo-size' %>
+      <%=image_tag 'logo', class: 'responsive-img custom-image logo-size' %>
     </div>
   </li>
-  <li class="nav-item z-depth-1 right <%= active_tab_class('home') %>">
-    <%= link_to 'Home', home_index_path, class: 'white-text' %>
+  <li class="nav-item z-depth-1 right <%= active_tab_class('admins') %>">
+    <%= link_to 'Administradores', admins_path, class: 'white-text' %>
   </li>
   <li class="nav-item z-depth-1 right <%= active_tab_class('institutions') %>">
     <%= link_to 'Instituições', institutions_path, class: 'white-text' %>
@@ -21,8 +21,5 @@
   </li>
   <li class="nav-item z-depth-1 right <%= active_tab_class('students') %>">
     <%= link_to 'Estudantes', students_path, class: 'white-text' %>
-  </li>
-  <li class="nav-item z-depth-1 right <%= active_tab_class('admins') %>">
-    <%= link_to 'Administradores', admins_path, class: 'white-text' %>
   </li>
 </ul>

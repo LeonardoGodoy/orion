@@ -20,7 +20,7 @@ class DisciplinesController < ApplicationController
     @discipline = Discipline.new(discipline_params)
 
     if @discipline.save
-      redirect_to @discipline, notice: 'Discipline was successfully created.'
+      redirect_to @discipline, notice: "Disciplina #{@discipline.name} criada com sucesso."
     else
       render :new
     end
@@ -28,7 +28,7 @@ class DisciplinesController < ApplicationController
 
   def update
     if @discipline.update(discipline_params)
-      redirect_to @discipline, notice: 'Discipline was successfully updated.'
+      redirect_to @discipline, notice: "Disciplina #{@discipline.name} atualizada com sucesso."
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class DisciplinesController < ApplicationController
 
   def destroy
     @discipline.destroy
-    redirect_to disciplines_url, notice: 'Discipline was successfully destroyed.'
+    redirect_to disciplines_url, notice: "Disciplina #{@discipline.name} excluída com sucesso."
   end
 
   private

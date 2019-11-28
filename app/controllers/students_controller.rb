@@ -20,7 +20,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     if @student.save
-      redirect_to @student, notice: 'Student was successfully created.'
+      redirect_to @student, notice: "Estudante #{@student.name} criado com sucesso."
     else
       render :new
     end
@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
 
   def update
     if @student.update(student_params)
-      redirect_to @student, notice: 'Student was successfully updated.'
+      redirect_to @student, notice: "Estudante #{@student.name} atualizado com sucesso."
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class StudentsController < ApplicationController
 
   def destroy
     @student.destroy
-    redirect_to students_url, notice: 'Student was successfully destroyed.'
+    redirect_to students_url, notice: "Estudante #{@student.name} excluído com sucesso."
   end
 
   private

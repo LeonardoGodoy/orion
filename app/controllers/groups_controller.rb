@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     if @group.save
-      redirect_to @group, notice: 'Group was successfully created.'
+      redirect_to @group, notice: "Grupo #{@group.name} criado com sucesso."
     else
       render :new
     end
@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to @group, notice: 'Group was successfully updated.'
+      redirect_to @group, notice: "Grupo #{@group.name} atualizado com sucesso."
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirect_to groups_url, notice: 'Group was successfully destroyed.'
+    redirect_to groups_url, notice: "Grupo #{@group.name} excluído com sucesso."
   end
 
   private

@@ -20,7 +20,7 @@ class InstitutionsController < ApplicationController
     @institution = Institution.new(institution_params)
 
     if @institution.save
-      redirect_to @institution, notice: 'Institution was successfully created.'
+      redirect_to @institution, notice: "Instituição #{@institution.name} criada com sucesso."
     else
       render :new
     end
@@ -28,7 +28,7 @@ class InstitutionsController < ApplicationController
 
   def update
     if @institution.update(institution_params)
-      redirect_to @institution, notice: 'Institution was successfully updated.'
+      redirect_to @institution, notice: "Instituição #{@institution.name} atualizada com sucesso."
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class InstitutionsController < ApplicationController
 
   def destroy
     @institution.destroy
-    redirect_to institutions_url, notice: 'Institution was successfully destroyed.'
+    redirect_to institutions_url, notice: "Instituição #{@institution.name} excluída com sucesso."
   end
 
   private
