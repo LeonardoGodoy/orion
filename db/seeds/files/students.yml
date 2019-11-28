@@ -1,6 +1,8 @@
 ---
   - name: 'User'
     email: 'user@user.com'
+  - name: 'Demo Banca'
+    email: 'demo@email.com'
   - name: 'Leonardo Godoy'
     email: 'leonardo.godoy.souza@gmail.com'
   - name: 'Luiz Otávio'
