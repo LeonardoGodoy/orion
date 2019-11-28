@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_11_20_231349) do
   create_table "absences", force: :cascade do |t|
     t.date "date"
     t.integer "year"
-    t.integer "quantity"
+    t.integer "quantity", default: 1
     t.bigint "discipline_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
