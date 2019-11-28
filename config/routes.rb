@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :sessions, only: :create
     resources :students, only: :create
 
+    get 'blobs/:id/download', to: 'blobs#download'
     post 'passwords/recover', to: 'passwords#recover'
     post 'passwords/reset', to: 'passwords#reset'
 
