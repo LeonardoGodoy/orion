@@ -6,26 +6,26 @@ default: &default
 development:
   <<: *default
   database: orion_development
-  host: db
-  username: postgres
+  host: localhost
+  username: orion
 
 test:
   <<: *default
   database: orion_test
-  host: db
-  username: postgres
+  host: localhost
+  username: orion
   password:
 
 staging:
   <<: *default
   database: orion_staging
-  host: db
-  username: postgres
+  host: localhost
+  username: orion
   password:
 
 production:
   <<: *default
   database: orion_production
-  host: db
-  username: postgres
+  host: localhost
+  username: orion
   password:

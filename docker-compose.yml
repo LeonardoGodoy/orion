@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:12.1
+    ports:
+      - '5434:5432'
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s puma -p 3000 -b '0.0.0.0'"
+    stdin_open: true
+    tty: true
+    volumes:
+      - bundle_cache:/bundle
+      - .:/server_orion # comment this line if you are using docker-sync
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro
+      - ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub:ro
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+volumes:
+  bundle_cache: {}
