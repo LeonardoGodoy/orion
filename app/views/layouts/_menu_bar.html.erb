@@ -4,9 +4,6 @@
       <%=image_tag 'logo', class: 'responsive-img custom-image logo-size' %>
     </div>
   </li>
-  <li class="nav-item z-depth-1 right <%= active_tab_class('admins') %>">
-    <%= link_to 'Administradores', admins_path, class: 'white-text' %>
-  </li>
   <li class="nav-item z-depth-1 right <%= active_tab_class('institutions') %>">
     <%= link_to 'Instituições', institutions_path, class: 'white-text' %>
   </li>
@@ -21,5 +18,8 @@
   </li>
   <li class="nav-item z-depth-1 right <%= active_tab_class('students') %>">
     <%= link_to 'Estudantes', students_path, class: 'white-text' %>
+  </li>
+  <li class="nav-item z-depth-1 right <%= active_tab_class('admins') %>">
+    <%= link_to 'Administradores', admins_path, class: 'white-text' %>
   </li>
 </ul>
