@@ -9,10 +9,30 @@
     <%= stylesheet_link_tag 'custom/materialize.min.css' %>
     <%= stylesheet_link_tag 'custom/login.css' %>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
     <%= yield %>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('.sidenav').sidenav();
+      });
+      $(document).ready(function(){
+        $('.tooltipped').tooltip();
+      });
+      $(document).ready(function(){
+        $('.modal').modal();
+      });
+      window.onload = function() {
+        <% if notice != nil %>
+        M.toast({html: '<%= notice %>'});
+        <% end %>
+      }
+    </script>
   </body>
 </html>
